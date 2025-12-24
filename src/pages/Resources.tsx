@@ -167,24 +167,46 @@ const resourcesData: Record<string, Category> = {
     resources: [
       {
         id: 401,
-        title: "Tổng hợp môn toán lớp 5",
-        description: "Bộ tài liệu toàn diện bao gồm đề thi và bài tập chuyên toán lớp 5",
+        title: "Toán lớp 5",
+        description: "Tổng hợp tài liệu, đề thi và bài tập môn Toán lớp 5",
         icon: Calculator,
-        downloadCount: 2500,
+        downloadCount: 9300,
         hasLevels: true,
         levels: [
-          { name: "99 bộ đề toán lớp 5", url: "https://drive.google.com/file/d/1RWn51V21PMVRU4Dqn0XcE4bB79t4088R/view" },
-          { name: "40 bộ đề toán lớp 5", url: "https://drive.google.com/file/d/1zkmHpjzVEySOrqVJaRQj4DufXwoMhXnG/view" },
-          { name: "369 bài tập chuyên toán lớp 5", url: "https://drive.google.com/file/d/1DDikN1pyOgovKiQv8pfSV0S7my-jG82t/view" },
-          { name: "39 Bộ đề bồi dưỡng toán 5", url: "https://drive.google.com/file/d/1yAK7PLcn_uv5cVNGK3I8HubC8zfGuaJl/view" },
-          { name: "Bồi dưỡng toán 5 hay và khó", url: "https://drive.google.com/file/d/1zsfn9yP6CdBvhidktTNrl26i_AEEhlEL/view" },
-          { name: "Để học tốt toán 5", url: "https://drive.google.com/file/d/1O8MZVHPq0r97FDDHNmknnvmA88GTnO5t/view" },
-          { name: "Những bài toán hay và khó lớp 5", url: "https://drive.google.com/file/d/1F203E7uYlaITNKNSPf1EYhhbT0RUU8rP/view" }
+          { 
+            name: "Tổng hợp môn toán lớp 5",
+            subLevels: [
+              { name: "99 bộ đề toán lớp 5", url: "https://drive.google.com/file/d/1RWn51V21PMVRU4Dqn0XcE4bB79t4088R/view" },
+              { name: "40 bộ đề toán lớp 5", url: "https://drive.google.com/file/d/1zkmHpjzVEySOrqVJaRQj4DufXwoMhXnG/view" },
+              { name: "369 bài tập chuyên toán lớp 5", url: "https://drive.google.com/file/d/1DDikN1pyOgovKiQv8pfSV0S7my-jG82t/view" },
+              { name: "39 Bộ đề bồi dưỡng toán 5", url: "https://drive.google.com/file/d/1yAK7PLcn_uv5cVNGK3I8HubC8zfGuaJl/view" },
+              { name: "Bồi dưỡng toán 5 hay và khó", url: "https://drive.google.com/file/d/1zsfn9yP6CdBvhidktTNrl26i_AEEhlEL/view" },
+              { name: "Để học tốt toán 5", url: "https://drive.google.com/file/d/1O8MZVHPq0r97FDDHNmknnvmA88GTnO5t/view" },
+              { name: "Những bài toán hay và khó lớp 5", url: "https://drive.google.com/file/d/1F203E7uYlaITNKNSPf1EYhhbT0RUU8rP/view" }
+            ]
+          },
+          { 
+            name: "Đề thi cuối học kì 1",
+            subLevels: [
+              { name: "Bộ đề thi Toán lớp 5 cuối học kì 1", url: "https://drive.google.com/drive/folders/1cVxUTvS2qLsjKl-sthBx3L_mM7qfhmSf" },
+              { name: "Tổng hợp các đề ôn thi cuối HK1", url: "https://drive.google.com/drive/folders/1dsJ3wq7i_9Xjedoh0f75lMq49q6dglC2" }
+            ]
+          },
+          { name: "Khảo sát chất lượng đầu năm", url: "https://drive.google.com/drive/folders/1zFx8pegpGHGUSgiwQsJf_RF7h60DMtlW" }
         ]
       },
       {
         id: 402,
-        title: "Tổng hợp toán tuổi thơ (toán tiểu học)",
+        title: "Toán lớp 6",
+        description: "Bộ đề thi vào lớp 6 Toán + Tiếng Việt của trường Marie Curie",
+        icon: GraduationCap,
+        url: "https://drive.google.com/file/d/1idINPLbajimzFSPyL-ehk7aud-uHlTFr/view",
+        downloadCount: 1800,
+        hasLevels: false
+      },
+      {
+        id: 403,
+        title: "Toán tuổi thơ (toán tiểu học)",
         description: "Bộ sưu tập đề thi và tài liệu toán tuổi thơ dành cho học sinh tiểu học",
         icon: Sparkles,
         downloadCount: 3200,
@@ -204,42 +226,6 @@ const resourcesData: Record<string, Category> = {
           { name: "Số đo thời gian và toán chuyển động", url: "https://drive.google.com/file/d/1DB6q2Dx9UUPtGJcz87G04-gO7NxAc7Ap/view" },
           { name: "Phương pháp giải 50 bộ đề toán (Có đáp án)", url: "https://drive.google.com/file/d/1BQQkjaBod8Drz5H6LVnNVWGuBpvIcSH8/view" }
         ]
-      },
-      {
-        id: 403,
-        title: "Tổng hợp toán lớp 6",
-        description: "Bộ đề thi vào lớp 6 Toán + Tiếng Việt của trường Marie Curie",
-        icon: GraduationCap,
-        url: "https://drive.google.com/file/d/1idINPLbajimzFSPyL-ehk7aud-uHlTFr/view",
-        downloadCount: 1800,
-        hasLevels: false
-      },
-      {
-        id: 404,
-        title: "Bộ đề thi Toán lớp 5 cuối học kì 1",
-        description: "Tuyển tập đề thi cuối học kỳ 1 môn Toán lớp 5",
-        icon: Target,
-        url: "https://drive.google.com/drive/folders/1cVxUTvS2qLsjKl-sthBx3L_mM7qfhmSf",
-        downloadCount: 1700,
-        hasLevels: false
-      },
-      {
-        id: 405,
-        title: "Khảo sát chất lượng môn Toán đầu năm lớp 5",
-        description: "Đề thi khảo sát chất lượng đầu năm môn Toán lớp 5",
-        icon: Compass,
-        url: "https://drive.google.com/drive/folders/1zFx8pegpGHGUSgiwQsJf_RF7h60DMtlW",
-        downloadCount: 1500,
-        hasLevels: false
-      },
-      {
-        id: 406,
-        title: "Tổng hợp các đề ôn thi cuối HK1 lớp 5 môn Toán",
-        description: "Bộ đề ôn luyện thi cuối học kỳ 1 môn Toán lớp 5",
-        icon: Brain,
-        url: "https://drive.google.com/drive/folders/1dsJ3wq7i_9Xjedoh0f75lMq49q6dglC2",
-        downloadCount: 1600,
-        hasLevels: false
       }
     ]
   },
@@ -250,75 +236,51 @@ const resourcesData: Record<string, Category> = {
     resources: [
       {
         id: 301,
-        title: "35 bài văn hay lớp 4",
-        description: "Tuyển tập 35 bài văn mẫu hay dành cho học sinh lớp 4",
-        icon: Sparkles,
-        url: "https://drive.google.com/file/d/1yOmQPTIsxP0LeIl8Wgbc9mSL42tL8CZ2/view",
-        downloadCount: 1950,
-        hasLevels: false
+        title: "Tiếng Việt lớp 3",
+        description: "Tổng hợp tài liệu ôn luyện Tiếng Việt lớp 3",
+        icon: BookOpen,
+        downloadCount: 5200,
+        hasLevels: true,
+        levels: [
+          { name: "Luyện thi HSG Tiếng Việt lớp 3", url: "https://drive.google.com/drive/folders/19cnRpz81jcH_qMJAsV3yuu8SS9pLBgzV" },
+          { name: "Tập làm văn lớp 3", url: "https://drive.google.com/drive/folders/16uVyuDWKpnLX1lsQoxWAZHp6sDZrDx5P" },
+          { name: "Tổng hợp (luyện từ và câu, chính tả, luyện viết)", url: "https://drive.google.com/drive/folders/1LD8H4UY7J7wwnrV2_6tsBSl6PQcl2rDA" }
+        ]
       },
       {
         id: 302,
-        title: "Luyện tập thành ngữ, tục ngữ Việt Nam",
-        description: "Tài liệu luyện tập thành ngữ và tục ngữ Việt Nam cho học sinh",
-        icon: Brain,
-        url: "https://drive.google.com/file/d/1C8rO34V7S16Uog_EfcIMwP8TyiOm4fR6/view",
-        downloadCount: 1720,
-        hasLevels: false
+        title: "Tiếng Việt lớp 4",
+        description: "Tài liệu văn mẫu và bài tập Tiếng Việt lớp 4",
+        icon: BookOpen,
+        downloadCount: 1950,
+        hasLevels: true,
+        levels: [
+          { name: "35 bài văn hay lớp 4", url: "https://drive.google.com/file/d/1yOmQPTIsxP0LeIl8Wgbc9mSL42tL8CZ2/view" }
+        ]
       },
       {
         id: 303,
-        title: "Tổng hợp Ca dao, Tục ngữ theo chủ đề",
-        description: "Tuyển tập ca dao, tục ngữ Việt Nam được phân loại theo từng chủ đề",
-        icon: Lightbulb,
-        url: "https://docs.google.com/document/d/1a3kSmWIh09amxxLgBtpr8DeSOOYb4Yy2/edit?rtpof=true&sd=true",
-        downloadCount: 1580,
-        hasLevels: false
+        title: "Tiếng Việt lớp 5",
+        description: "Tổng hợp đề thi và tài liệu Tiếng Việt lớp 5",
+        icon: BookOpen,
+        downloadCount: 4100,
+        hasLevels: true,
+        levels: [
+          { name: "Tuyển tập 80 đề thi HSG (có đáp án)", url: "https://drive.google.com/drive/folders/1Kc5j_8V8asAB9pYRg0oR-YYV8xCUUn9r" },
+          { name: "Đề thi giữa HK1 và cuối HK1", url: "https://drive.google.com/drive/folders/1DNYJsTUggdqHqPiJniw7GDkvsreIloG_" }
+        ]
       },
       {
         id: 304,
-        title: "Luyện thi HSG Tiếng Việt lớp 3",
-        description: "Tài liệu ôn luyện thi học sinh giỏi môn Tiếng Việt lớp 3",
-        icon: Trophy,
-        url: "https://drive.google.com/drive/folders/19cnRpz81jcH_qMJAsV3yuu8SS9pLBgzV",
-        downloadCount: 1800,
-        hasLevels: false
-      },
-      {
-        id: 305,
-        title: "Tập làm văn lớp 3",
-        description: "Bộ tài liệu hướng dẫn tập làm văn cho học sinh lớp 3",
-        icon: Sparkles,
-        url: "https://drive.google.com/drive/folders/16uVyuDWKpnLX1lsQoxWAZHp6sDZrDx5P",
-        downloadCount: 1650,
-        hasLevels: false
-      },
-      {
-        id: 306,
-        title: "Tổng hợp Tiếng Việt lớp 3",
-        description: "Luyện từ và câu, chính tả, luyện viết cho học sinh lớp 3",
-        icon: BookOpen,
-        url: "https://drive.google.com/drive/folders/1LD8H4UY7J7wwnrV2_6tsBSl6PQcl2rDA",
-        downloadCount: 1750,
-        hasLevels: false
-      },
-      {
-        id: 307,
-        title: "Tuyển tập 80 đề thi HSG Tiếng Việt lớp 5 (có đáp án)",
-        description: "80 đề thi học sinh giỏi môn Tiếng Việt lớp 5 kèm đáp án chi tiết",
-        icon: GraduationCap,
-        url: "https://drive.google.com/drive/folders/1Kc5j_8V8asAB9pYRg0oR-YYV8xCUUn9r",
-        downloadCount: 2200,
-        hasLevels: false
-      },
-      {
-        id: 308,
-        title: "Tiếng Việt lớp 5 - Đề thi giữa HK1 và cuối HK1",
-        description: "Bộ đề thi giữa học kỳ 1 và cuối học kỳ 1 môn Tiếng Việt lớp 5",
-        icon: Target,
-        url: "https://drive.google.com/drive/folders/1DNYJsTUggdqHqPiJniw7GDkvsreIloG_",
-        downloadCount: 1900,
-        hasLevels: false
+        title: "Thành ngữ, tục ngữ, ca dao",
+        description: "Tài liệu luyện tập thành ngữ, tục ngữ và ca dao Việt Nam",
+        icon: Brain,
+        downloadCount: 3300,
+        hasLevels: true,
+        levels: [
+          { name: "Luyện tập thành ngữ, tục ngữ Việt Nam", url: "https://drive.google.com/file/d/1C8rO34V7S16Uog_EfcIMwP8TyiOm4fR6/view" },
+          { name: "Tổng hợp Ca dao, Tục ngữ theo chủ đề", url: "https://docs.google.com/document/d/1a3kSmWIh09amxxLgBtpr8DeSOOYb4Yy2/edit?rtpof=true&sd=true" }
+        ]
       }
     ]
   },
