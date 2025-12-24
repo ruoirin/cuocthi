@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowLeft, BookOpen, Calculator, Globe, MapPin, Trophy, Palette,
@@ -12,6 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { supabase } from "@/integrations/supabase/client";
 
 // Type definitions
 interface SingleResource {
@@ -297,6 +298,52 @@ const Resources = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedResource, setSelectedResource] = useState<LeveledResource | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>("indigo");
+  const [downloadCounts, setDownloadCounts] = useState<Record<number, number>>({});
+
+  // Fetch download counts from database
+  useEffect(() => {
+    const fetchDownloadCounts = async () => {
+      const { data, error } = await supabase
+        .from('resource_downloads')
+        .select('resource_id, download_count');
+      
+      if (data && !error) {
+        const counts: Record<number, number> = {};
+        data.forEach(item => {
+          counts[item.resource_id] = item.download_count;
+        });
+        setDownloadCounts(counts);
+      }
+    };
+
+    fetchDownloadCounts();
+
+    // Subscribe to realtime updates
+    const channel = supabase
+      .channel('resource-downloads')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'resource_downloads'
+        },
+        (payload) => {
+          if (payload.new && typeof payload.new === 'object' && 'resource_id' in payload.new) {
+            const newData = payload.new as { resource_id: number; download_count: number };
+            setDownloadCounts(prev => ({
+              ...prev,
+              [newData.resource_id]: newData.download_count
+            }));
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
 
   const categories = Object.entries(resourcesData);
 
@@ -316,13 +363,25 @@ const Resources = () => {
     return true;
   });
 
-  const handleResourceClick = (resource: Resource, color: string) => {
+  const handleResourceClick = async (resource: Resource, color: string) => {
+    // Increment download count in database
+    await supabase.rpc('increment_download_count', { p_resource_id: resource.id });
+
     if (resource.hasLevels) {
       setSelectedResource(resource);
       setSelectedColor(color);
     } else {
       window.open((resource as SingleResource).url, '_blank');
     }
+  };
+
+  const handleLevelClick = async (resourceId: number) => {
+    // Increment download count when clicking a level
+    await supabase.rpc('increment_download_count', { p_resource_id: resourceId });
+  };
+
+  const getDownloadCount = (resourceId: number) => {
+    return downloadCounts[resourceId] || 0;
   };
 
   return (
@@ -481,7 +540,7 @@ const Resources = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-1 text-xs text-slate-400">
                           <Download className="w-4 h-4" />
-                          <span>{resource.downloadCount.toLocaleString()} lượt tải</span>
+                          <span>{getDownloadCount(resource.id).toLocaleString()} lượt tải</span>
                         </div>
                         <div className={`flex items-center gap-1 text-sm font-medium ${colors.iconColor} group-hover:gap-2 transition-all`}>
                           <span>{resource.hasLevels ? 'Xem chi tiết' : 'Tải xuống'}</span>
@@ -526,6 +585,7 @@ const Resources = () => {
                     href={level.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => selectedResource && handleLevelClick(selectedResource.id)}
                     className={`flex items-center justify-between p-3 rounded-xl ${colors.bg} ${colors.border} border-2 ${colors.hoverBg} transition-all hover:shadow-md group`}
                   >
                     <span className="font-medium text-slate-700">{level.name}</span>
