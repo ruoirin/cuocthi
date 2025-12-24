@@ -48,6 +48,42 @@ interface Category {
 
 // Dữ liệu tài liệu học tập
 const resourcesData: Record<string, Category> = {
+  cuocThi: {
+    name: "Cuộc thi",
+    icon: Award,
+    color: "orange",
+    resources: [
+      {
+        id: 211,
+        title: "Kỳ thi Toán quốc tế TIMO",
+        description: "Tài liệu ôn thi và đề thi Olympic Toán quốc tế Thái Lan (TIMO) các khối",
+        icon: Medal,
+        downloadCount: 3500,
+        hasLevels: true,
+        levels: [
+          { name: "Khối Mẫu giáo", url: "https://drive.google.com/drive/folders/timo-mn" },
+          { name: "Khối 1", url: "https://drive.google.com/drive/folders/timo-k1" },
+          { name: "Khối 2", url: "https://drive.google.com/drive/folders/timo-k2" },
+          { name: "Khối 3", url: "https://drive.google.com/drive/folders/timo-k3" },
+          { name: "Khối 4", url: "https://drive.google.com/drive/folders/timo-k4" },
+          { name: "Khối 5", url: "https://drive.google.com/drive/folders/timo-k5" },
+          { name: "Khối 6", url: "https://drive.google.com/drive/folders/timo-k6" },
+          { name: "Khối 7", url: "https://drive.google.com/drive/folders/timo-k7" },
+          { name: "Khối 8", url: "https://drive.google.com/drive/folders/timo-k8" },
+          { name: "Khối 9", url: "https://drive.google.com/file/d/1vSuONzhmo6O300rwaCTCGrHEUcuX30Ag/view?usp=drive_link" }
+        ]
+      },
+      {
+        id: 212,
+        title: "Tổng hợp câu đố ôn thi Trạng Nguyên Tiếng Việt",
+        description: "Bộ câu đố và tài liệu ôn luyện cho kỳ thi Trạng Nguyên Tiếng Việt",
+        icon: Trophy,
+        url: "https://docs.google.com/document/d/1_HrZJ4oTfyvBgKrJj3HQFjswCNf7WUxP/edit",
+        downloadCount: 2800,
+        hasLevels: false
+      }
+    ]
+  },
   toan: {
     name: "Toán",
     icon: Calculator,
@@ -58,7 +94,35 @@ const resourcesData: Record<string, Category> = {
     name: "Tiếng Việt",
     icon: BookOpen,
     color: "red",
-    resources: []
+    resources: [
+      {
+        id: 301,
+        title: "35 bài văn hay lớp 4",
+        description: "Tuyển tập 35 bài văn mẫu hay dành cho học sinh lớp 4",
+        icon: Sparkles,
+        url: "https://drive.google.com/file/d/1yOmQPTIsxP0LeIl8Wgbc9mSL42tL8CZ2/view",
+        downloadCount: 1950,
+        hasLevels: false
+      },
+      {
+        id: 302,
+        title: "Luyện tập thành ngữ, tục ngữ Việt Nam",
+        description: "Tài liệu luyện tập thành ngữ và tục ngữ Việt Nam cho học sinh",
+        icon: Brain,
+        url: "https://drive.google.com/file/d/1C8rO34V7S16Uog_EfcIMwP8TyiOm4fR6/view",
+        downloadCount: 1720,
+        hasLevels: false
+      },
+      {
+        id: 303,
+        title: "Tổng hợp Ca dao, Tục ngữ theo chủ đề",
+        description: "Tuyển tập ca dao, tục ngữ Việt Nam được phân loại theo từng chủ đề",
+        icon: Lightbulb,
+        url: "https://docs.google.com/document/d/1a3kSmWIh09amxxLgBtpr8DeSOOYb4Yy2/edit?rtpof=true&sd=true",
+        downloadCount: 1580,
+        hasLevels: false
+      }
+    ]
   },
   tiengAnh: {
     name: "Tiếng Anh",
@@ -207,33 +271,6 @@ const resourcesData: Record<string, Category> = {
         url: "https://drive.google.com/drive/folders/toan-sing",
         downloadCount: 2200,
         hasLevels: false
-      }
-    ]
-  },
-  cuocThi: {
-    name: "Cuộc thi",
-    icon: Award,
-    color: "orange",
-    resources: [
-      {
-        id: 211,
-        title: "Kỳ thi Toán quốc tế TIMO",
-        description: "Tài liệu ôn thi và đề thi Olympic Toán quốc tế Thái Lan (TIMO) các khối",
-        icon: Medal,
-        downloadCount: 3500,
-        hasLevels: true,
-        levels: [
-          { name: "Khối Mẫu giáo", url: "https://drive.google.com/drive/folders/timo-mn" },
-          { name: "Khối 1", url: "https://drive.google.com/drive/folders/timo-k1" },
-          { name: "Khối 2", url: "https://drive.google.com/drive/folders/timo-k2" },
-          { name: "Khối 3", url: "https://drive.google.com/drive/folders/timo-k3" },
-          { name: "Khối 4", url: "https://drive.google.com/drive/folders/timo-k4" },
-          { name: "Khối 5", url: "https://drive.google.com/drive/folders/timo-k5" },
-          { name: "Khối 6", url: "https://drive.google.com/drive/folders/timo-k6" },
-          { name: "Khối 7", url: "https://drive.google.com/drive/folders/timo-k7" },
-          { name: "Khối 8", url: "https://drive.google.com/drive/folders/timo-k8" },
-          { name: "Khối 9", url: "https://drive.google.com/file/d/1vSuONzhmo6O300rwaCTCGrHEUcuX30Ag/view?usp=drive_link" }
-        ]
       }
     ]
   },
