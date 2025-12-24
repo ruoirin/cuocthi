@@ -4,6 +4,7 @@ import {
   ChevronRight, X, ExternalLink, Users, Star, 
   Filter, Trophy, Globe, Code, Clock, AlertCircle, Calculator, BarChart3
 } from 'lucide-react';
+import ResourcesBanner from '@/components/ResourcesBanner';
 
 // --- DỮ LIỆU CUỘC THI: CẬP NHẬT NGÀY 13/12/2025 ---
 const competitionsData = [
@@ -906,6 +907,9 @@ const Index = () => {
           </div>
         </div>
       </header>
+
+      {/* --- RESOURCES BANNER --- */}
+      <ResourcesBanner />
 
       {/* --- INFO BANNER --- */}
       <div className="bg-indigo-50 border-b border-indigo-100 py-3 px-4">
