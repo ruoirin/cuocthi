@@ -89,7 +89,57 @@ const resourcesData: Record<string, Category> = {
     name: "Toán",
     icon: Calculator,
     color: "blue",
-    resources: []
+    resources: [
+      {
+        id: 401,
+        title: "Tổng hợp môn toán lớp 5",
+        description: "Bộ tài liệu toàn diện bao gồm đề thi và bài tập chuyên toán lớp 5",
+        icon: Calculator,
+        downloadCount: 2500,
+        hasLevels: true,
+        levels: [
+          { name: "99 bộ đề toán lớp 5", url: "https://drive.google.com/file/d/1RWn51V21PMVRU4Dqn0XcE4bB79t4088R/view" },
+          { name: "40 bộ đề toán lớp 5", url: "https://drive.google.com/file/d/1zkmHpjzVEySOrqVJaRQj4DufXwoMhXnG/view" },
+          { name: "369 bài tập chuyên toán lớp 5", url: "https://drive.google.com/file/d/1DDikN1pyOgovKiQv8pfSV0S7my-jG82t/view" },
+          { name: "39 Bộ đề bồi dưỡng toán 5", url: "https://drive.google.com/file/d/1yAK7PLcn_uv5cVNGK3I8HubC8zfGuaJl/view" },
+          { name: "Bồi dưỡng toán 5 hay và khó", url: "https://drive.google.com/file/d/1zsfn9yP6CdBvhidktTNrl26i_AEEhlEL/view" },
+          { name: "Để học tốt toán 5", url: "https://drive.google.com/file/d/1O8MZVHPq0r97FDDHNmknnvmA88GTnO5t/view" },
+          { name: "Những bài toán hay và khó lớp 5", url: "https://drive.google.com/file/d/1F203E7uYlaITNKNSPf1EYhhbT0RUU8rP/view" }
+        ]
+      },
+      {
+        id: 402,
+        title: "Tổng hợp toán tuổi thơ (toán tiểu học)",
+        description: "Bộ sưu tập đề thi và tài liệu toán tuổi thơ dành cho học sinh tiểu học",
+        icon: Sparkles,
+        downloadCount: 3200,
+        hasLevels: true,
+        levels: [
+          { name: "Tổng tập 10 năm toán tuổi thơ tiểu học", url: "https://drive.google.com/file/d/1H3CcAR8caUprpkvALJnTI3tKkkZ92FTE/view" },
+          { name: "35 Bộ đề thi toán tuổi thơ", url: "https://drive.google.com/file/d/1Fbbhy_l4DHpvDQBRGEXDkUf7-efEr08F/view" },
+          { name: "500 bài toán tiểu học", url: "https://drive.google.com/file/d/1Pm7BYtTZLTO6IUQwOsJ1ok02Tvhfly-C/view" },
+          { name: "10 chuyên đề bồi dưỡng toán tiểu học Tập 1", url: "https://drive.google.com/file/d/179BG9IxYi_MoWPCJMTQo56tCUPM2K7E2/view" },
+          { name: "10 chuyên đề bồi dưỡng toán tiểu học Tập 2", url: "https://drive.google.com/file/d/1l5FonSqITVYK7UOgsn2CBT6qJlNFf9FG/view" },
+          { name: "Phương pháp giải toán tiểu học tập 1 (Sách GV)", url: "https://drive.google.com/file/d/1fU70Yq1rj-b02Xfl-v07jmZxZCFxH1XF/view" },
+          { name: "Phương pháp giải toán tiểu học tập 2 (Sách GV)", url: "https://drive.google.com/file/d/1saHT6ZAOeOSWYr-NcpJg4Fn8nIG_aZd3/view" },
+          { name: "Giải toán bằng nhiều cách", url: "https://drive.google.com/file/d/1zFJeZflpyk6G_FUrMexe1Hn6j54zDMD0/view" },
+          { name: "Những bài toán hay Toán tuổi thơ", url: "https://drive.google.com/file/d/1zY46fsTguQiMkuRPpPQ3vx-FlzT2DqTO/view" },
+          { name: "Toán chọn lọc tiểu học tập 1", url: "https://drive.google.com/file/d/1ybQqCtaM2KYsVWwvH6sJBRLmD-kX1W7O/view" },
+          { name: "Toán chọn lọc tiểu học tập 2 (52 bộ đề có đáp án)", url: "https://drive.google.com/file/d/1-2XCvx8wwKF8o0IGxT9Kkj5D77QLVWjy/view" },
+          { name: "Số đo thời gian và toán chuyển động", url: "https://drive.google.com/file/d/1DB6q2Dx9UUPtGJcz87G04-gO7NxAc7Ap/view" },
+          { name: "Phương pháp giải 50 bộ đề toán (Có đáp án)", url: "https://drive.google.com/file/d/1BQQkjaBod8Drz5H6LVnNVWGuBpvIcSH8/view" }
+        ]
+      },
+      {
+        id: 403,
+        title: "Tổng hợp toán lớp 6",
+        description: "Bộ đề thi vào lớp 6 Toán + Tiếng Việt của trường Marie Curie",
+        icon: GraduationCap,
+        url: "https://drive.google.com/file/d/1idINPLbajimzFSPyL-ehk7aud-uHlTFr/view",
+        downloadCount: 1800,
+        hasLevels: false
+      }
+    ]
   },
   tiengViet: {
     name: "Tiếng Việt",
@@ -168,6 +218,38 @@ const resourcesData: Record<string, Category> = {
           { name: "Lớp 10", url: "https://drive.google.com/drive/folders/17MjSNGiJg21xzv0YNKhJ04NzJGyprhoh" },
           { name: "Lớp 11", url: "https://drive.google.com/drive/folders/1ZjnG8WkNCPPo49nLFoSZX00mzVFz2ZWz" },
           { name: "Lớp 12", url: "https://drive.google.com/drive/folders/1xyxoRieCj6b589csXd8M-tfsupHT3_P5" }
+        ]
+      },
+      {
+        id: 104,
+        title: "Đề thi tham khảo HK1 môn Tiếng Anh lớp 1 – lớp 9",
+        description: "Bộ đề thi tham khảo học kỳ 1 môn Tiếng Anh từ lớp 1 đến lớp 9",
+        icon: Target,
+        url: "https://drive.google.com/drive/folders/1kq2O13VNcPRobzZ-Zeih3JGg6Oh6XZFc",
+        downloadCount: 2800,
+        hasLevels: false
+      },
+      {
+        id: 105,
+        title: "Đề thi chuyên Tiếng Anh lớp 10 THPT",
+        description: "Tuyển tập đề thi chuyên Tiếng Anh vào lớp 10 các trường THPT",
+        icon: Trophy,
+        url: "https://drive.google.com/drive/folders/1ay2oBmjPOlqN-xveHhavcG42kN9lsJbq",
+        downloadCount: 3100,
+        hasLevels: false
+      },
+      {
+        id: 106,
+        title: "Tiếng Anh i-Learn Smart World THCS",
+        description: "Bộ tài liệu Tiếng Anh i-Learn Smart World cho học sinh THCS",
+        icon: Lightbulb,
+        downloadCount: 3500,
+        hasLevels: true,
+        levels: [
+          { name: "Lớp 6", url: "https://drive.google.com/drive/u/0/folders/1lXEcBJ9SRqDwlPW22rkVb19Bz8ZGr7-V" },
+          { name: "Lớp 7", url: "https://dtpeducationvn-my.sharepoint.com/personal/nganptn_dtp-education_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fnganptn%5Fdtp%2Deducation%5Fcom%2FDocuments%2FT%C3%A0i%20nguy%C3%AAn%20S%C3%A1ch%20Gi%C3%A1o%20Khoa%2FT%C3%A0i%20li%E1%BB%87u%20full%20i%2DLearn%20Smart%20World%207&ga=1" },
+          { name: "Lớp 8", url: "https://dtpeducationvn-my.sharepoint.com/personal/nganptn_dtp-education_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fnganptn%5Fdtp%2Deducation%5Fcom%2FDocuments%2FT%C3%A0i%20nguy%C3%AAn%20S%C3%A1ch%20Gi%C3%A1o%20Khoa%2FT%C3%A0i%20li%E1%BB%87u%20full%20i%2DLearn%20Smart%20World%208&ga=1" },
+          { name: "Lớp 9", url: "https://dtpeducationvn-my.sharepoint.com/personal/nganptn_dtp-education_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fnganptn%5Fdtp%2Deducation%5Fcom%2FDocuments%2FT%C3%A0i%20nguy%C3%AAn%20S%C3%A1ch%20Gi%C3%A1o%20Khoa%2FT%C3%A0i%20li%E1%BB%87u%20full%20i%2DLearn%20Smart%20World%209&ga=1" }
         ]
       }
     ]
