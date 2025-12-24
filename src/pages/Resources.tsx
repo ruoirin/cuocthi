@@ -62,16 +62,16 @@ const resourcesData: Record<string, Category> = {
         downloadCount: 3500,
         hasLevels: true,
         levels: [
-          { name: "Khối Mẫu giáo", url: "https://drive.google.com/drive/folders/timo-mn" },
-          { name: "Khối 1", url: "https://drive.google.com/drive/folders/timo-k1" },
-          { name: "Khối 2", url: "https://drive.google.com/drive/folders/timo-k2" },
-          { name: "Khối 3", url: "https://drive.google.com/drive/folders/timo-k3" },
-          { name: "Khối 4", url: "https://drive.google.com/drive/folders/timo-k4" },
-          { name: "Khối 5", url: "https://drive.google.com/drive/folders/timo-k5" },
-          { name: "Khối 6", url: "https://drive.google.com/drive/folders/timo-k6" },
-          { name: "Khối 7", url: "https://drive.google.com/drive/folders/timo-k7" },
-          { name: "Khối 8", url: "https://drive.google.com/drive/folders/timo-k8" },
-          { name: "Khối 9", url: "https://drive.google.com/file/d/1vSuONzhmo6O300rwaCTCGrHEUcuX30Ag/view?usp=drive_link" }
+          { name: "Khối Mầm non", url: "https://drive.google.com/file/d/1LMueJIqJFilPHgVSFKdXv3ii17VDILK6/view" },
+          { name: "Khối 1", url: "https://drive.google.com/file/d/1S1WI2_pc00Es7KjnVh-f_CmkTH8PHVX_/view" },
+          { name: "Khối 2", url: "https://drive.google.com/file/d/1QuMoHiSUCl3DRVwuYiOZJmupyP2XyDn-/view" },
+          { name: "Khối 3", url: "https://drive.google.com/file/d/1SsA1UHMGOvWPHPd5dXSs_u1WGmiwELkD/view" },
+          { name: "Khối 4", url: "https://drive.google.com/file/d/1akP92t5tLYNaYomZz3xI4eZ4lOjHcDoj/view" },
+          { name: "Khối 5", url: "https://drive.google.com/file/d/1M9V_EaFpM9VUbcsIKnco21jX1UKkBhOE/view" },
+          { name: "Khối 6", url: "https://drive.google.com/file/d/168L8Abx2KombTqkSg-dyMKDODAy1VCYY/view" },
+          { name: "Khối 7", url: "https://drive.google.com/file/d/10wC6DxrCChZ2CdLQz18K6r_mD9NAunoy/view" },
+          { name: "Khối 8", url: "https://drive.google.com/file/d/19GI47cb2QlwVris3kj0BLa_2T4J_aJLy/view" },
+          { name: "Khối 9", url: "https://drive.google.com/file/d/1vSuONzhmo6O300rwaCTCGrHEUcuX30Ag/view" }
         ]
       },
       {
