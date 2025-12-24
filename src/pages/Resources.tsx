@@ -251,7 +251,7 @@ const resourcesData: Record<string, Category> = {
         title: "Bộ sách Oxford Mathematics PYP",
         description: "Sách toán Oxford theo chương trình Primary Years Programme",
         icon: GraduationCap,
-        url: "https://drive.google.com/drive/folders/oxford-math-pyp",
+        url: "https://drive.google.com/drive/folders/1PV5UWBQ7p5ymsZXY3TWQGQCQxV7D096b",
         downloadCount: 1520,
         hasLevels: false
       },
@@ -260,7 +260,7 @@ const resourcesData: Record<string, Category> = {
         title: "Bộ sách Singapore Math Challenge Word Problems G2-G5",
         description: "Bài toán đố theo phương pháp Singapore từ Grade 2 đến Grade 5",
         icon: Puzzle,
-        url: "https://drive.google.com/drive/folders/singapore-word-problems",
+        url: "https://drive.google.com/drive/folders/1-7Hk2K_d-AcrI7WFZevx5rqG2iHDSAF8",
         downloadCount: 1890,
         hasLevels: false
       },
@@ -269,7 +269,7 @@ const resourcesData: Record<string, Category> = {
         title: "Bộ sách Toán Sing",
         description: "Trọn bộ sách toán Singapore cho học sinh tiểu học",
         icon: Lightbulb,
-        url: "https://drive.google.com/drive/folders/toan-sing",
+        url: "https://drive.google.com/drive/folders/1kJrumlwqwdx7wH4CHNZA3dBV-duCoThM",
         downloadCount: 2200,
         hasLevels: false
       }
