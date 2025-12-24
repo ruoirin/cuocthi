@@ -135,7 +135,7 @@ const resourcesData: Record<string, Category> = {
         title: "Tài liệu luyện phát âm Tiếng Anh (IPA, Trọng âm, Ngữ âm)",
         description: "Tài liệu quý về phát âm chuẩn IPA, luyện trọng âm và ngữ âm tiếng Anh",
         icon: Mic,
-        url: "https://drive.google.com/drive/folders/example-phat-am",
+        url: "https://drive.google.com/drive/folders/1cCNwg7nnOZtUOeXgylcBe3zhG5kt0rup",
         downloadCount: 2500,
         hasLevels: false
       },
@@ -144,7 +144,7 @@ const resourcesData: Record<string, Category> = {
         title: "Bộ tài liệu Tiếng Anh US-EDU từ Mẫu giáo đến Lớp 12",
         description: "Trọn bộ tài liệu học Tiếng Anh theo chương trình US-EDU",
         icon: GraduationCap,
-        url: "https://drive.google.com/drive/folders/example-usedu",
+        url: "https://drive.google.com/drive/folders/15PofJBFW3ymrm41AojESeKMuGvHVg7Y8",
         downloadCount: 3200,
         hasLevels: false
       },
@@ -156,18 +156,18 @@ const resourcesData: Record<string, Category> = {
         downloadCount: 4500,
         hasLevels: true,
         levels: [
-          { name: "Lớp 1", url: "https://drive.google.com/drive/folders/global-lop1" },
-          { name: "Lớp 2", url: "https://drive.google.com/drive/folders/global-lop2" },
-          { name: "Lớp 3", url: "https://drive.google.com/drive/folders/global-lop3" },
-          { name: "Lớp 4", url: "https://drive.google.com/drive/folders/global-lop4" },
-          { name: "Lớp 5", url: "https://drive.google.com/drive/folders/global-lop5" },
-          { name: "Lớp 6", url: "https://drive.google.com/drive/folders/global-lop6" },
-          { name: "Lớp 7", url: "https://drive.google.com/drive/folders/global-lop7" },
-          { name: "Lớp 8", url: "https://drive.google.com/drive/folders/global-lop8" },
-          { name: "Lớp 9", url: "https://drive.google.com/drive/folders/1D5isV8_J-ImswVLrYoMnQuLMMdQk8zgA?usp=sharing" },
-          { name: "Lớp 10", url: "https://drive.google.com/drive/folders/17MjSNGiJg21xzv0YNKhJ04NzJGyprhoh?usp=sharing" },
-          { name: "Lớp 11", url: "https://drive.google.com/drive/folders/1ZjnG8WkNCPPo49nLFoSZX00mzVFz2ZWz?usp=sharing" },
-          { name: "Lớp 12", url: "https://drive.google.com/drive/folders/1xyxoRieCj6b589csXd8M-tfsupHT3_P5?usp=sharing" }
+          { name: "Lớp 1", url: "https://drive.google.com/drive/folders/1KBmi-wkaxoeopr5G2nLXHSi2VUOgzaZ_" },
+          { name: "Lớp 2", url: "https://drive.google.com/drive/folders/1EIzQxO0ODNKgMUEGj2qcuW53X2_pIyEv" },
+          { name: "Lớp 3", url: "https://drive.google.com/drive/folders/1jF2c1u_WxDjhOJoj-4OL8ZiPnWJmq3WP" },
+          { name: "Lớp 4", url: "https://drive.google.com/drive/folders/10py5-8_UKOZHnpdw9I3zg8gZr5SM7mSl" },
+          { name: "Lớp 5", url: "https://drive.google.com/drive/folders/10C4GKf4cA8Hd77wYGjb3rFCNHGyA1xEk" },
+          { name: "Lớp 6", url: "https://drive.google.com/drive/folders/145CZUuNssd9yA6B1CMdGTz94Jrg8fG54" },
+          { name: "Lớp 7", url: "https://drive.google.com/drive/folders/1OiWhJLTDukKeI2bPzoXCaD5w5bRo7Ai-" },
+          { name: "Lớp 8", url: "https://drive.google.com/drive/folders/1pB_N5GCYUjwuHFbEbfz46RpUBGeq3uQS" },
+          { name: "Lớp 9", url: "https://drive.google.com/drive/folders/1D5isV8_J-ImswVLrYoMnQuLMMdQk8zgA" },
+          { name: "Lớp 10", url: "https://drive.google.com/drive/folders/17MjSNGiJg21xzv0YNKhJ04NzJGyprhoh" },
+          { name: "Lớp 11", url: "https://drive.google.com/drive/folders/1ZjnG8WkNCPPo49nLFoSZX00mzVFz2ZWz" },
+          { name: "Lớp 12", url: "https://drive.google.com/drive/folders/1xyxoRieCj6b589csXd8M-tfsupHT3_P5" }
         ]
       }
     ]
