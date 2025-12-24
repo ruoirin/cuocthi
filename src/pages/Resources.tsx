@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowLeft, BookOpen, Calculator, Globe, MapPin, Trophy, Palette,
-  FileText, Download, ExternalLink, Folder, Search, X, ChevronRight
+  Download, ExternalLink, Folder, Search, X, ChevronRight,
+  Mic, GraduationCap, Languages, Calendar, Brain, Compass,
+  Target, Lightbulb, Puzzle, Sparkles, Medal, Award, LucideIcon
 } from 'lucide-react';
 import {
   Dialog,
@@ -16,7 +18,7 @@ interface SingleResource {
   id: number;
   title: string;
   description: string;
-  type: "pdf" | "doc" | "folder";
+  icon: LucideIcon;
   url: string;
   downloadCount: number;
   hasLevels?: false;
@@ -26,7 +28,7 @@ interface LeveledResource {
   id: number;
   title: string;
   description: string;
-  type: "pdf" | "doc" | "folder";
+  icon: LucideIcon;
   downloadCount: number;
   hasLevels: true;
   levels: {
@@ -67,7 +69,7 @@ const resourcesData: Record<string, Category> = {
         id: 101,
         title: "Tài liệu luyện phát âm Tiếng Anh (IPA, Trọng âm, Ngữ âm)",
         description: "Tài liệu quý về phát âm chuẩn IPA, luyện trọng âm và ngữ âm tiếng Anh",
-        type: "folder",
+        icon: Mic,
         url: "https://drive.google.com/drive/folders/example-phat-am",
         downloadCount: 2500,
         hasLevels: false
@@ -76,7 +78,7 @@ const resourcesData: Record<string, Category> = {
         id: 102,
         title: "Bộ tài liệu Tiếng Anh US-EDU từ Mẫu giáo đến Lớp 12",
         description: "Trọn bộ tài liệu học Tiếng Anh theo chương trình US-EDU",
-        type: "folder",
+        icon: GraduationCap,
         url: "https://drive.google.com/drive/folders/example-usedu",
         downloadCount: 3200,
         hasLevels: false
@@ -85,7 +87,7 @@ const resourcesData: Record<string, Category> = {
         id: 103,
         title: "Bộ tài liệu Tiếng Anh Global từ Lớp 1 đến Lớp 12",
         description: "Tài liệu Tiếng Anh Global đầy đủ cho học sinh từ lớp 1 đến lớp 12",
-        type: "folder",
+        icon: Languages,
         downloadCount: 4500,
         hasLevels: true,
         levels: [
@@ -120,7 +122,7 @@ const resourcesData: Record<string, Category> = {
         id: 201,
         title: "Bộ sách 180 Days of Math",
         description: "Bộ sách luyện toán 180 ngày giúp học sinh rèn luyện kỹ năng toán học mỗi ngày",
-        type: "folder",
+        icon: Calendar,
         url: "https://drive.google.com/drive/folders/17WGgnsvjxEBInLlCLll7rbGKPg_jAfQ9",
         downloadCount: 1850,
         hasLevels: false
@@ -129,7 +131,7 @@ const resourcesData: Record<string, Category> = {
         id: 202,
         title: "Bộ sách Common Core Math",
         description: "Tài liệu toán học theo chuẩn Common Core của Mỹ",
-        type: "folder",
+        icon: Target,
         url: "https://drive.google.com/drive/folders/1hRoiefN8-ZS7m-hcuUrmzcsm4vq3ofxT",
         downloadCount: 1620,
         hasLevels: false
@@ -138,7 +140,7 @@ const resourcesData: Record<string, Category> = {
         id: 203,
         title: "Bộ sách In Step Maths - Singapore Math",
         description: "Phương pháp toán Singapore nổi tiếng thế giới",
-        type: "folder",
+        icon: Compass,
         url: "https://drive.google.com/drive/folders/1SoSALJArxQGV15PbqcZZW0Ev5nFZ7ARM",
         downloadCount: 2100,
         hasLevels: false
@@ -147,7 +149,7 @@ const resourcesData: Record<string, Category> = {
         id: 204,
         title: "Bộ sách Master Skills Math",
         description: "Sách rèn luyện kỹ năng toán học nâng cao",
-        type: "folder",
+        icon: Brain,
         url: "https://drive.google.com/drive/folders/1DMgpHf-GqpCdrV5EBxqcKxl3ZccB2hFu",
         downloadCount: 1450,
         hasLevels: false
@@ -156,7 +158,7 @@ const resourcesData: Record<string, Category> = {
         id: 205,
         title: "Bộ sách Math Guide G1-G6 - Singapore Math",
         description: "Hướng dẫn toán Singapore cho học sinh từ Grade 1 đến Grade 6",
-        type: "folder",
+        icon: BookOpen,
         url: "https://drive.google.com/drive/folders/1fuz2THBSHduFAz3gifiNZ61H8ksTzmMS",
         downloadCount: 1980,
         hasLevels: false
@@ -165,7 +167,7 @@ const resourcesData: Record<string, Category> = {
         id: 206,
         title: "Bộ sách Math In My World",
         description: "Sách toán ứng dụng trong đời sống thực tế",
-        type: "folder",
+        icon: Globe,
         url: "https://drive.google.com/drive/folders/1fME5VvuiOA3_dVFqNkRMS-drcJJEr8ew",
         downloadCount: 1320,
         hasLevels: false
@@ -174,7 +176,7 @@ const resourcesData: Record<string, Category> = {
         id: 207,
         title: "Bộ sách Math Minutes G1-G7",
         description: "Bài tập toán ngắn giúp luyện tập nhanh mỗi ngày từ Grade 1 đến Grade 7",
-        type: "folder",
+        icon: Sparkles,
         url: "https://drive.google.com/drive/folders/17zm_9wurRReNK-M9kEgZLbU8SjBPHZb3",
         downloadCount: 1680,
         hasLevels: false
@@ -183,7 +185,7 @@ const resourcesData: Record<string, Category> = {
         id: 208,
         title: "Bộ sách Oxford Mathematics PYP",
         description: "Sách toán Oxford theo chương trình Primary Years Programme",
-        type: "folder",
+        icon: GraduationCap,
         url: "https://drive.google.com/drive/folders/oxford-math-pyp",
         downloadCount: 1520,
         hasLevels: false
@@ -192,7 +194,7 @@ const resourcesData: Record<string, Category> = {
         id: 209,
         title: "Bộ sách Singapore Math Challenge Word Problems G2-G5",
         description: "Bài toán đố theo phương pháp Singapore từ Grade 2 đến Grade 5",
-        type: "folder",
+        icon: Puzzle,
         url: "https://drive.google.com/drive/folders/singapore-word-problems",
         downloadCount: 1890,
         hasLevels: false
@@ -201,7 +203,7 @@ const resourcesData: Record<string, Category> = {
         id: 210,
         title: "Bộ sách Toán Sing",
         description: "Trọn bộ sách toán Singapore cho học sinh tiểu học",
-        type: "folder",
+        icon: Lightbulb,
         url: "https://drive.google.com/drive/folders/toan-sing",
         downloadCount: 2200,
         hasLevels: false
@@ -210,7 +212,7 @@ const resourcesData: Record<string, Category> = {
         id: 211,
         title: "Kỳ thi Toán quốc tế TIMO",
         description: "Tài liệu ôn thi và đề thi Olympic Toán quốc tế Thái Lan (TIMO) các khối",
-        type: "folder",
+        icon: Medal,
         downloadCount: 3500,
         hasLevels: true,
         levels: [
@@ -415,18 +417,13 @@ const Resources = () => {
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div className={`w-10 h-10 ${colors.iconBg} rounded-xl flex items-center justify-center`}>
-                          <FileText className={`w-5 h-5 ${colors.iconColor}`} />
+                          <resource.icon className={`w-5 h-5 ${colors.iconColor}`} />
                         </div>
-                        <div className="flex items-center gap-2">
-                          {resource.hasLevels && (
-                            <span className={`px-2 py-1 text-xs font-medium rounded-full ${colors.levelBg} text-white`}>
-                              {resource.levels.length} cấp độ
-                            </span>
-                          )}
-                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${colors.iconBg} ${colors.iconColor} uppercase`}>
-                            {resource.type}
+                        {resource.hasLevels && (
+                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${colors.levelBg} text-white`}>
+                            {resource.levels.length} cấp độ
                           </span>
-                        </div>
+                        )}
                       </div>
                       
                       <h3 className="font-semibold text-slate-800 mb-2 line-clamp-2 group-hover:text-slate-900">
