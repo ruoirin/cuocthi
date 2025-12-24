@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowLeft, BookOpen, Calculator, Globe, MapPin, Trophy, Palette,
-  Download, ExternalLink, Folder, Search, X, ChevronRight,
+  Download, ExternalLink, Folder, Search, X, ChevronRight, ChevronDown,
   Mic, GraduationCap, Languages, Calendar, Brain, Compass,
   Target, Lightbulb, Puzzle, Sparkles, Medal, Award, LucideIcon
 } from 'lucide-react';
@@ -15,6 +15,17 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 
 // Type definitions
+interface SubLevel {
+  name: string;
+  url: string;
+}
+
+interface Level {
+  name: string;
+  url?: string;
+  subLevels?: SubLevel[];
+}
+
 interface SingleResource {
   id: number;
   title: string;
@@ -32,10 +43,7 @@ interface LeveledResource {
   icon: LucideIcon;
   downloadCount: number;
   hasLevels: true;
-  levels: {
-    name: string;
-    url: string;
-  }[];
+  levels: Level[];
 }
 
 type Resource = SingleResource | LeveledResource;
@@ -84,32 +92,52 @@ const resourcesData: Record<string, Category> = {
         levels: [
           { name: "Tổng hợp câu đố ôn thi TNTV", url: "https://docs.google.com/document/d/1_HrZJ4oTfyvBgKrJj3HQFjswCNf7WUxP/edit" },
           { name: "Cẩm nang TNTV các khối lớp", url: "https://drive.google.com/drive/folders/1NTz5zMRQztw8-6_yKUYNcQ5VDffv7RO6" },
-          { name: "--- LỚP 1 ---", url: "#" },
-          { name: "Lớp 1 - Cấp trường", url: "https://drive.google.com/drive/folders/1FyTnq6XnbAunjMDECesR9kO-lFUUZ7Ks" },
-          { name: "Lớp 1 - Cấp huyện", url: "https://drive.google.com/drive/folders/1Vc5giNG7ml7WiuQe10nIgIbZiv0UokbI" },
-          { name: "Lớp 1 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/10LkmcCWCzs7FGeKFaQx7lLRgGkR_9Pcc" },
-          { name: "--- LỚP 2 ---", url: "#" },
-          { name: "Lớp 2 - Cấp trường", url: "https://drive.google.com/drive/folders/1UuFynvFXPxkZ9mjZibHo_df4TpwSkvLP" },
-          { name: "Lớp 2 - Cấp huyện", url: "https://drive.google.com/drive/folders/1HufQVxR8rjQByXTwBDx5ULO11YpCPunY" },
-          { name: "Lớp 2 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/1m1PovQVEW7Qzf1gUJWirb7FAuUxlIYrJ" },
-          { name: "--- LỚP 3 ---", url: "#" },
-          { name: "Lớp 3 - Cấp trường", url: "https://drive.google.com/drive/folders/1TChswCdmj3mlme5_AixSXWjGhps8bGxE" },
-          { name: "Lớp 3 - Cấp huyện", url: "https://drive.google.com/drive/folders/1SVDyHWglXYabxlZmMybowpWf6VyxkT_z" },
-          { name: "Lớp 3 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/1wzpmnU0Eym1GJL-AjNu1DpjPkd0edi05" },
-          { name: "Lớp 3 - Các vòng 2024-2025 (có đáp án)", url: "https://drive.google.com/drive/folders/11tbmmGPJ_jjLgr3dz6xXe1BKBNUQR4ze" },
-          { name: "Lớp 3 - 10 đề vòng trường", url: "https://drive.google.com/drive/folders/1P0V2ZCqzIh3RJjK2XQzyWKuxQq8y_k1I" },
-          { name: "Lớp 3 - Bộ ôn 19 vòng", url: "https://drive.google.com/drive/folders/1XfL0iw_X5Ne2dwJhCnexawZVL_UZ3gr5" },
-          { name: "Lớp 3 - Đề thi tỉnh chính thức 23-24", url: "https://drive.google.com/drive/folders/172Iu9lp1fUI6bT1BQoTwPPeanaxoD-Y1" },
-          { name: "Lớp 3 - Cấp huyện 2023-2024 vòng 6", url: "https://drive.google.com/drive/folders/1du_HCrn6b1byTcusNmiR40iiG1ogNMwM" },
-          { name: "Lớp 3 - Trạng Nguyên Toán TA TV", url: "https://drive.google.com/drive/folders/1c7pHQsCaJLeoidpV3sCqqkNcH94BnFG6" },
-          { name: "--- LỚP 4 ---", url: "#" },
-          { name: "Lớp 4 - Cấp trường", url: "https://drive.google.com/drive/folders/1XbcPR6NGpxyGnSy8JVMPpMjmDPhfAF0O" },
-          { name: "Lớp 4 - Cấp huyện", url: "https://drive.google.com/drive/folders/1O9VT2WGW3YQ85uzCvW20t4aHFbgFmMgM" },
-          { name: "Lớp 4 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/1iU7VvQb91TlNnauNWHe8_4KNv8cUjNyG" },
-          { name: "--- LỚP 5 ---", url: "#" },
-          { name: "Lớp 5 - Cấp trường", url: "https://drive.google.com/drive/folders/1aKOrap2ilH_gRr0zghYqeW_4qFoLWcBm" },
-          { name: "Lớp 5 - Cấp huyện", url: "https://drive.google.com/drive/folders/1zkmlj_XhZVWV0LUTYdsmehVhmB_BoSbx" },
-          { name: "Lớp 5 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/1aajSXVcih7woEeivS5XZolgdFapfb8xs" }
+          { 
+            name: "Lớp 1",
+            subLevels: [
+              { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1FyTnq6XnbAunjMDECesR9kO-lFUUZ7Ks" },
+              { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1Vc5giNG7ml7WiuQe10nIgIbZiv0UokbI" },
+              { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/10LkmcCWCzs7FGeKFaQx7lLRgGkR_9Pcc" }
+            ]
+          },
+          { 
+            name: "Lớp 2",
+            subLevels: [
+              { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1UuFynvFXPxkZ9mjZibHo_df4TpwSkvLP" },
+              { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1HufQVxR8rjQByXTwBDx5ULO11YpCPunY" },
+              { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1m1PovQVEW7Qzf1gUJWirb7FAuUxlIYrJ" }
+            ]
+          },
+          { 
+            name: "Lớp 3",
+            subLevels: [
+              { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1TChswCdmj3mlme5_AixSXWjGhps8bGxE" },
+              { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1SVDyHWglXYabxlZmMybowpWf6VyxkT_z" },
+              { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1wzpmnU0Eym1GJL-AjNu1DpjPkd0edi05" },
+              { name: "Các vòng 2024-2025 (có đáp án)", url: "https://drive.google.com/drive/folders/11tbmmGPJ_jjLgr3dz6xXe1BKBNUQR4ze" },
+              { name: "10 đề vòng trường", url: "https://drive.google.com/drive/folders/1P0V2ZCqzIh3RJjK2XQzyWKuxQq8y_k1I" },
+              { name: "Bộ ôn 19 vòng", url: "https://drive.google.com/drive/folders/1XfL0iw_X5Ne2dwJhCnexawZVL_UZ3gr5" },
+              { name: "Đề thi tỉnh chính thức 23-24", url: "https://drive.google.com/drive/folders/172Iu9lp1fUI6bT1BQoTwPPeanaxoD-Y1" },
+              { name: "Cấp huyện 2023-2024 vòng 6", url: "https://drive.google.com/drive/folders/1du_HCrn6b1byTcusNmiR40iiG1ogNMwM" },
+              { name: "Trạng Nguyên Toán TA TV", url: "https://drive.google.com/drive/folders/1c7pHQsCaJLeoidpV3sCqqkNcH94BnFG6" }
+            ]
+          },
+          { 
+            name: "Lớp 4",
+            subLevels: [
+              { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1XbcPR6NGpxyGnSy8JVMPpMjmDPhfAF0O" },
+              { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1O9VT2WGW3YQ85uzCvW20t4aHFbgFmMgM" },
+              { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1iU7VvQb91TlNnauNWHe8_4KNv8cUjNyG" }
+            ]
+          },
+          { 
+            name: "Lớp 5",
+            subLevels: [
+              { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1aKOrap2ilH_gRr0zghYqeW_4qFoLWcBm" },
+              { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1zkmlj_XhZVWV0LUTYdsmehVhmB_BoSbx" },
+              { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1aajSXVcih7woEeivS5XZolgdFapfb8xs" }
+            ]
+          }
         ]
       },
       {
@@ -121,8 +149,13 @@ const resourcesData: Record<string, Category> = {
         hasLevels: true,
         levels: [
           { name: "Bộ đề luyện Violympic – TNTV các khối lớp", url: "https://drive.google.com/drive/folders/1FJJe2I3hSjrBYcN7E8OxJVTtpXcESwgB" },
-          { name: "Lớp 3 - Violympic - Vioedu - TN", url: "https://drive.google.com/drive/folders/1Q0I09p8inNGk16HJPxTEjXHhVAm8grQk" },
-          { name: "Lớp 3 - Violympic cấp tỉnh", url: "https://drive.google.com/drive/folders/1CmQMPeCYpCg6HSWio35fzsn6R-BNUY2V" }
+          { 
+            name: "Lớp 3",
+            subLevels: [
+              { name: "Violympic - Vioedu - TN", url: "https://drive.google.com/drive/folders/1Q0I09p8inNGk16HJPxTEjXHhVAm8grQk" },
+              { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1CmQMPeCYpCg6HSWio35fzsn6R-BNUY2V" }
+            ]
+          }
         ]
       }
     ]
@@ -495,6 +528,19 @@ const Resources = () => {
   const [selectedResource, setSelectedResource] = useState<LeveledResource | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>("indigo");
   const [downloadCounts, setDownloadCounts] = useState<Record<number, number>>({});
+  const [expandedLevels, setExpandedLevels] = useState<Set<number>>(new Set());
+
+  const toggleLevel = (index: number) => {
+    setExpandedLevels(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        newSet.add(index);
+      }
+      return newSet;
+    });
+  };
 
   // Fetch download counts from database
   useEffect(() => {
@@ -762,19 +808,62 @@ const Resources = () => {
       </section>
 
       {/* Level Selection Dialog */}
-      <Dialog open={!!selectedResource} onOpenChange={() => setSelectedResource(null)}>
-        <DialogContent className="sm:max-w-lg">
+      <Dialog open={!!selectedResource} onOpenChange={() => { setSelectedResource(null); setExpandedLevels(new Set()); }}>
+        <DialogContent className="sm:max-w-lg max-h-[80vh] overflow-hidden flex flex-col">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold text-slate-800 pr-8">
               {selectedResource?.title}
             </DialogTitle>
           </DialogHeader>
-          <div className="mt-4">
+          <div className="mt-4 flex-1 overflow-hidden flex flex-col">
             <p className="text-slate-500 mb-4">{selectedResource?.description}</p>
             <p className="text-sm font-medium text-slate-600 mb-3">Chọn cấp độ / lớp học:</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[300px] overflow-y-auto">
+            <div className="flex-1 overflow-y-auto space-y-2 pr-2">
               {selectedResource?.levels.map((level, index) => {
                 const colors = colorClasses[selectedColor];
+                const hasSubLevels = level.subLevels && level.subLevels.length > 0;
+                const isExpanded = expandedLevels.has(index);
+                
+                if (hasSubLevels) {
+                  return (
+                    <div key={index} className="space-y-1">
+                      <button
+                        onClick={() => toggleLevel(index)}
+                        className={`w-full flex items-center justify-between p-3 rounded-xl ${colors.bg} ${colors.border} border-2 ${colors.hoverBg} transition-all hover:shadow-md`}
+                      >
+                        <span className="font-semibold text-slate-700">{level.name}</span>
+                        <div className="flex items-center gap-2">
+                          <span className={`text-xs px-2 py-0.5 rounded-full ${colors.levelBg} text-white`}>
+                            {level.subLevels?.length} tài liệu
+                          </span>
+                          {isExpanded ? (
+                            <ChevronDown className={`w-4 h-4 ${colors.iconColor}`} />
+                          ) : (
+                            <ChevronRight className={`w-4 h-4 ${colors.iconColor}`} />
+                          )}
+                        </div>
+                      </button>
+                      {isExpanded && (
+                        <div className="ml-4 space-y-1 animate-in slide-in-from-top-2 duration-200">
+                          {level.subLevels?.map((subLevel, subIndex) => (
+                            <a
+                              key={subIndex}
+                              href={subLevel.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => selectedResource && handleLevelClick(selectedResource.id)}
+                              className={`flex items-center justify-between p-2.5 rounded-lg bg-white border ${colors.border} hover:${colors.bg} transition-all hover:shadow-sm group`}
+                            >
+                              <span className="text-sm text-slate-600">{subLevel.name}</span>
+                              <ExternalLink className={`w-3.5 h-3.5 ${colors.iconColor} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                
                 return (
                   <a
                     key={index}
