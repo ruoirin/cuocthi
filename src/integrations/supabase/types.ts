@@ -14,13 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      resource_downloads: {
+        Row: {
+          created_at: string
+          download_count: number
+          id: number
+          resource_id: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          download_count?: number
+          id?: number
+          resource_id: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          download_count?: number
+          id?: number
+          resource_id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_download_count: {
+        Args: { p_resource_id: number }
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never
