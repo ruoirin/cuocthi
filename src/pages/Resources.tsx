@@ -76,113 +76,54 @@ const resourcesData: Record<string, Category> = {
       },
       {
         id: 212,
-        title: "Tổng hợp câu đố ôn thi Trạng Nguyên Tiếng Việt",
-        description: "Bộ câu đố và tài liệu ôn luyện cho kỳ thi Trạng Nguyên Tiếng Việt",
+        title: "Trạng Nguyên Tiếng Việt",
+        description: "Tổng hợp đề thi và tài liệu ôn luyện Trạng Nguyên Tiếng Việt từ lớp 1 đến lớp 5",
         icon: Trophy,
-        url: "https://docs.google.com/document/d/1_HrZJ4oTfyvBgKrJj3HQFjswCNf7WUxP/edit",
-        downloadCount: 2800,
-        hasLevels: false
+        downloadCount: 12500,
+        hasLevels: true,
+        levels: [
+          { name: "Tổng hợp câu đố ôn thi TNTV", url: "https://docs.google.com/document/d/1_HrZJ4oTfyvBgKrJj3HQFjswCNf7WUxP/edit" },
+          { name: "Cẩm nang TNTV các khối lớp", url: "https://drive.google.com/drive/folders/1NTz5zMRQztw8-6_yKUYNcQ5VDffv7RO6" },
+          { name: "--- LỚP 1 ---", url: "#" },
+          { name: "Lớp 1 - Cấp trường", url: "https://drive.google.com/drive/folders/1FyTnq6XnbAunjMDECesR9kO-lFUUZ7Ks" },
+          { name: "Lớp 1 - Cấp huyện", url: "https://drive.google.com/drive/folders/1Vc5giNG7ml7WiuQe10nIgIbZiv0UokbI" },
+          { name: "Lớp 1 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/10LkmcCWCzs7FGeKFaQx7lLRgGkR_9Pcc" },
+          { name: "--- LỚP 2 ---", url: "#" },
+          { name: "Lớp 2 - Cấp trường", url: "https://drive.google.com/drive/folders/1UuFynvFXPxkZ9mjZibHo_df4TpwSkvLP" },
+          { name: "Lớp 2 - Cấp huyện", url: "https://drive.google.com/drive/folders/1HufQVxR8rjQByXTwBDx5ULO11YpCPunY" },
+          { name: "Lớp 2 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/1m1PovQVEW7Qzf1gUJWirb7FAuUxlIYrJ" },
+          { name: "--- LỚP 3 ---", url: "#" },
+          { name: "Lớp 3 - Cấp trường", url: "https://drive.google.com/drive/folders/1TChswCdmj3mlme5_AixSXWjGhps8bGxE" },
+          { name: "Lớp 3 - Cấp huyện", url: "https://drive.google.com/drive/folders/1SVDyHWglXYabxlZmMybowpWf6VyxkT_z" },
+          { name: "Lớp 3 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/1wzpmnU0Eym1GJL-AjNu1DpjPkd0edi05" },
+          { name: "Lớp 3 - Các vòng 2024-2025 (có đáp án)", url: "https://drive.google.com/drive/folders/11tbmmGPJ_jjLgr3dz6xXe1BKBNUQR4ze" },
+          { name: "Lớp 3 - 10 đề vòng trường", url: "https://drive.google.com/drive/folders/1P0V2ZCqzIh3RJjK2XQzyWKuxQq8y_k1I" },
+          { name: "Lớp 3 - Bộ ôn 19 vòng", url: "https://drive.google.com/drive/folders/1XfL0iw_X5Ne2dwJhCnexawZVL_UZ3gr5" },
+          { name: "Lớp 3 - Đề thi tỉnh chính thức 23-24", url: "https://drive.google.com/drive/folders/172Iu9lp1fUI6bT1BQoTwPPeanaxoD-Y1" },
+          { name: "Lớp 3 - Cấp huyện 2023-2024 vòng 6", url: "https://drive.google.com/drive/folders/1du_HCrn6b1byTcusNmiR40iiG1ogNMwM" },
+          { name: "Lớp 3 - Trạng Nguyên Toán TA TV", url: "https://drive.google.com/drive/folders/1c7pHQsCaJLeoidpV3sCqqkNcH94BnFG6" },
+          { name: "--- LỚP 4 ---", url: "#" },
+          { name: "Lớp 4 - Cấp trường", url: "https://drive.google.com/drive/folders/1XbcPR6NGpxyGnSy8JVMPpMjmDPhfAF0O" },
+          { name: "Lớp 4 - Cấp huyện", url: "https://drive.google.com/drive/folders/1O9VT2WGW3YQ85uzCvW20t4aHFbgFmMgM" },
+          { name: "Lớp 4 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/1iU7VvQb91TlNnauNWHe8_4KNv8cUjNyG" },
+          { name: "--- LỚP 5 ---", url: "#" },
+          { name: "Lớp 5 - Cấp trường", url: "https://drive.google.com/drive/folders/1aKOrap2ilH_gRr0zghYqeW_4qFoLWcBm" },
+          { name: "Lớp 5 - Cấp huyện", url: "https://drive.google.com/drive/folders/1zkmlj_XhZVWV0LUTYdsmehVhmB_BoSbx" },
+          { name: "Lớp 5 - Cấp tỉnh", url: "https://drive.google.com/drive/folders/1aajSXVcih7woEeivS5XZolgdFapfb8xs" }
+        ]
       },
       {
         id: 213,
-        title: "Trạng Nguyên Tiếng Việt Lớp 1",
-        description: "Đề thi TNTV lớp 1 các cấp: trường, huyện, tỉnh",
-        icon: Trophy,
-        downloadCount: 2100,
-        hasLevels: true,
-        levels: [
-          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1FyTnq6XnbAunjMDECesR9kO-lFUUZ7Ks" },
-          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1Vc5giNG7ml7WiuQe10nIgIbZiv0UokbI" },
-          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/10LkmcCWCzs7FGeKFaQx7lLRgGkR_9Pcc" }
-        ]
-      },
-      {
-        id: 214,
-        title: "Trạng Nguyên Tiếng Việt Lớp 2",
-        description: "Đề thi TNTV lớp 2 các cấp: trường, huyện, tỉnh",
-        icon: Trophy,
-        downloadCount: 2200,
-        hasLevels: true,
-        levels: [
-          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1UuFynvFXPxkZ9mjZibHo_df4TpwSkvLP" },
-          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1HufQVxR8rjQByXTwBDx5ULO11YpCPunY" },
-          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1m1PovQVEW7Qzf1gUJWirb7FAuUxlIYrJ" }
-        ]
-      },
-      {
-        id: 215,
-        title: "Trạng Nguyên Tiếng Việt Lớp 3",
-        description: "Đề thi TNTV lớp 3 đầy đủ các cấp và tài liệu ôn luyện",
-        icon: Trophy,
-        downloadCount: 3500,
-        hasLevels: true,
-        levels: [
-          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1TChswCdmj3mlme5_AixSXWjGhps8bGxE" },
-          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1SVDyHWglXYabxlZmMybowpWf6VyxkT_z" },
-          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1wzpmnU0Eym1GJL-AjNu1DpjPkd0edi05" },
-          { name: "TNTV khối 3 các vòng 2024-2025 (có đáp án)", url: "https://drive.google.com/drive/folders/11tbmmGPJ_jjLgr3dz6xXe1BKBNUQR4ze" },
-          { name: "10 đề TNTV lớp 3 vòng trường", url: "https://drive.google.com/drive/folders/1P0V2ZCqzIh3RJjK2XQzyWKuxQq8y_k1I" },
-          { name: "Bộ ôn TNTV lớp 3 - 19 vòng", url: "https://drive.google.com/drive/folders/1XfL0iw_X5Ne2dwJhCnexawZVL_UZ3gr5" },
-          { name: "Đề thi tỉnh chính thức TNTV lớp 3 23-24", url: "https://drive.google.com/drive/folders/172Iu9lp1fUI6bT1BQoTwPPeanaxoD-Y1" },
-          { name: "TNTV khối 3 cấp huyện 2023-2024 vòng 6", url: "https://drive.google.com/drive/folders/1du_HCrn6b1byTcusNmiR40iiG1ogNMwM" },
-          { name: "Trạng Nguyên lớp 3 Toán TA TV", url: "https://drive.google.com/drive/folders/1c7pHQsCaJLeoidpV3sCqqkNcH94BnFG6" }
-        ]
-      },
-      {
-        id: 216,
-        title: "Trạng Nguyên Tiếng Việt Lớp 4",
-        description: "Đề thi TNTV lớp 4 các cấp: trường, huyện, tỉnh",
-        icon: Trophy,
-        downloadCount: 2300,
-        hasLevels: true,
-        levels: [
-          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1XbcPR6NGpxyGnSy8JVMPpMjmDPhfAF0O" },
-          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1O9VT2WGW3YQ85uzCvW20t4aHFbgFmMgM" },
-          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1iU7VvQb91TlNnauNWHe8_4KNv8cUjNyG" }
-        ]
-      },
-      {
-        id: 217,
-        title: "Trạng Nguyên Tiếng Việt Lớp 5",
-        description: "Đề thi TNTV lớp 5 các cấp: trường, huyện, tỉnh",
-        icon: Trophy,
-        downloadCount: 2400,
-        hasLevels: true,
-        levels: [
-          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1aKOrap2ilH_gRr0zghYqeW_4qFoLWcBm" },
-          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1zkmlj_XhZVWV0LUTYdsmehVhmB_BoSbx" },
-          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1aajSXVcih7woEeivS5XZolgdFapfb8xs" }
-        ]
-      },
-      {
-        id: 218,
-        title: "Cẩm nang TNTV các khối lớp",
-        description: "Cẩm nang hướng dẫn ôn thi Trạng Nguyên Tiếng Việt cho tất cả các khối lớp",
-        icon: BookOpen,
-        url: "https://drive.google.com/drive/folders/1NTz5zMRQztw8-6_yKUYNcQ5VDffv7RO6",
-        downloadCount: 1900,
-        hasLevels: false
-      },
-      {
-        id: 219,
-        title: "Violympic Lớp 3",
-        description: "Tài liệu ôn thi Violympic lớp 3 các cấp",
+        title: "Violympic",
+        description: "Tổng hợp tài liệu và đề thi ôn luyện Violympic các khối lớp",
         icon: Medal,
-        downloadCount: 2000,
+        downloadCount: 4500,
         hasLevels: true,
         levels: [
-          { name: "Violympic - Vioedu - TN lớp 3", url: "https://drive.google.com/drive/folders/1Q0I09p8inNGk16HJPxTEjXHhVAm8grQk" },
-          { name: "Violympic lớp 3 cấp tỉnh", url: "https://drive.google.com/drive/folders/1CmQMPeCYpCg6HSWio35fzsn6R-BNUY2V" }
+          { name: "Bộ đề luyện Violympic – TNTV các khối lớp", url: "https://drive.google.com/drive/folders/1FJJe2I3hSjrBYcN7E8OxJVTtpXcESwgB" },
+          { name: "Lớp 3 - Violympic - Vioedu - TN", url: "https://drive.google.com/drive/folders/1Q0I09p8inNGk16HJPxTEjXHhVAm8grQk" },
+          { name: "Lớp 3 - Violympic cấp tỉnh", url: "https://drive.google.com/drive/folders/1CmQMPeCYpCg6HSWio35fzsn6R-BNUY2V" }
         ]
-      },
-      {
-        id: 220,
-        title: "Bộ đề luyện Violympic – TNTV các khối lớp",
-        description: "Tổng hợp bộ đề luyện Violympic và TNTV cho tất cả các khối lớp",
-        icon: Medal,
-        url: "https://drive.google.com/drive/folders/1FJJe2I3hSjrBYcN7E8OxJVTtpXcESwgB",
-        downloadCount: 2500,
-        hasLevels: false
       }
     ]
   },
