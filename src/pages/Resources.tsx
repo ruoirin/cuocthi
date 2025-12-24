@@ -207,7 +207,14 @@ const resourcesData: Record<string, Category> = {
         url: "https://drive.google.com/drive/folders/toan-sing",
         downloadCount: 2200,
         hasLevels: false
-      },
+      }
+    ]
+  },
+  cuocThi: {
+    name: "Cuộc thi",
+    icon: Award,
+    color: "orange",
+    resources: [
       {
         id: 211,
         title: "Kỳ thi Toán quốc tế TIMO",
@@ -244,7 +251,8 @@ const colorClasses: Record<string, { bg: string; border: string; iconBg: string;
   green: { bg: "bg-green-50", border: "border-green-200", iconBg: "bg-green-100", iconColor: "text-green-600", hoverBg: "hover:bg-green-100", levelBg: "bg-green-500", levelHover: "hover:bg-green-600" },
   amber: { bg: "bg-amber-50", border: "border-amber-200", iconBg: "bg-amber-100", iconColor: "text-amber-600", hoverBg: "hover:bg-amber-100", levelBg: "bg-amber-500", levelHover: "hover:bg-amber-600" },
   indigo: { bg: "bg-indigo-50", border: "border-indigo-200", iconBg: "bg-indigo-100", iconColor: "text-indigo-600", hoverBg: "hover:bg-indigo-100", levelBg: "bg-indigo-500", levelHover: "hover:bg-indigo-600" },
-  pink: { bg: "bg-pink-50", border: "border-pink-200", iconBg: "bg-pink-100", iconColor: "text-pink-600", hoverBg: "hover:bg-pink-100", levelBg: "bg-pink-500", levelHover: "hover:bg-pink-600" }
+  pink: { bg: "bg-pink-50", border: "border-pink-200", iconBg: "bg-pink-100", iconColor: "text-pink-600", hoverBg: "hover:bg-pink-100", levelBg: "bg-pink-500", levelHover: "hover:bg-pink-600" },
+  orange: { bg: "bg-orange-50", border: "border-orange-200", iconBg: "bg-orange-100", iconColor: "text-orange-600", hoverBg: "hover:bg-orange-100", levelBg: "bg-orange-500", levelHover: "hover:bg-orange-600" }
 };
 
 const Resources = () => {
