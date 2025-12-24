@@ -82,6 +82,107 @@ const resourcesData: Record<string, Category> = {
         url: "https://docs.google.com/document/d/1_HrZJ4oTfyvBgKrJj3HQFjswCNf7WUxP/edit",
         downloadCount: 2800,
         hasLevels: false
+      },
+      {
+        id: 213,
+        title: "Trạng Nguyên Tiếng Việt Lớp 1",
+        description: "Đề thi TNTV lớp 1 các cấp: trường, huyện, tỉnh",
+        icon: Trophy,
+        downloadCount: 2100,
+        hasLevels: true,
+        levels: [
+          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1FyTnq6XnbAunjMDECesR9kO-lFUUZ7Ks" },
+          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1Vc5giNG7ml7WiuQe10nIgIbZiv0UokbI" },
+          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/10LkmcCWCzs7FGeKFaQx7lLRgGkR_9Pcc" }
+        ]
+      },
+      {
+        id: 214,
+        title: "Trạng Nguyên Tiếng Việt Lớp 2",
+        description: "Đề thi TNTV lớp 2 các cấp: trường, huyện, tỉnh",
+        icon: Trophy,
+        downloadCount: 2200,
+        hasLevels: true,
+        levels: [
+          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1UuFynvFXPxkZ9mjZibHo_df4TpwSkvLP" },
+          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1HufQVxR8rjQByXTwBDx5ULO11YpCPunY" },
+          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1m1PovQVEW7Qzf1gUJWirb7FAuUxlIYrJ" }
+        ]
+      },
+      {
+        id: 215,
+        title: "Trạng Nguyên Tiếng Việt Lớp 3",
+        description: "Đề thi TNTV lớp 3 đầy đủ các cấp và tài liệu ôn luyện",
+        icon: Trophy,
+        downloadCount: 3500,
+        hasLevels: true,
+        levels: [
+          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1TChswCdmj3mlme5_AixSXWjGhps8bGxE" },
+          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1SVDyHWglXYabxlZmMybowpWf6VyxkT_z" },
+          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1wzpmnU0Eym1GJL-AjNu1DpjPkd0edi05" },
+          { name: "TNTV khối 3 các vòng 2024-2025 (có đáp án)", url: "https://drive.google.com/drive/folders/11tbmmGPJ_jjLgr3dz6xXe1BKBNUQR4ze" },
+          { name: "10 đề TNTV lớp 3 vòng trường", url: "https://drive.google.com/drive/folders/1P0V2ZCqzIh3RJjK2XQzyWKuxQq8y_k1I" },
+          { name: "Bộ ôn TNTV lớp 3 - 19 vòng", url: "https://drive.google.com/drive/folders/1XfL0iw_X5Ne2dwJhCnexawZVL_UZ3gr5" },
+          { name: "Đề thi tỉnh chính thức TNTV lớp 3 23-24", url: "https://drive.google.com/drive/folders/172Iu9lp1fUI6bT1BQoTwPPeanaxoD-Y1" },
+          { name: "TNTV khối 3 cấp huyện 2023-2024 vòng 6", url: "https://drive.google.com/drive/folders/1du_HCrn6b1byTcusNmiR40iiG1ogNMwM" },
+          { name: "Trạng Nguyên lớp 3 Toán TA TV", url: "https://drive.google.com/drive/folders/1c7pHQsCaJLeoidpV3sCqqkNcH94BnFG6" }
+        ]
+      },
+      {
+        id: 216,
+        title: "Trạng Nguyên Tiếng Việt Lớp 4",
+        description: "Đề thi TNTV lớp 4 các cấp: trường, huyện, tỉnh",
+        icon: Trophy,
+        downloadCount: 2300,
+        hasLevels: true,
+        levels: [
+          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1XbcPR6NGpxyGnSy8JVMPpMjmDPhfAF0O" },
+          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1O9VT2WGW3YQ85uzCvW20t4aHFbgFmMgM" },
+          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1iU7VvQb91TlNnauNWHe8_4KNv8cUjNyG" }
+        ]
+      },
+      {
+        id: 217,
+        title: "Trạng Nguyên Tiếng Việt Lớp 5",
+        description: "Đề thi TNTV lớp 5 các cấp: trường, huyện, tỉnh",
+        icon: Trophy,
+        downloadCount: 2400,
+        hasLevels: true,
+        levels: [
+          { name: "Cấp trường", url: "https://drive.google.com/drive/folders/1aKOrap2ilH_gRr0zghYqeW_4qFoLWcBm" },
+          { name: "Cấp huyện", url: "https://drive.google.com/drive/folders/1zkmlj_XhZVWV0LUTYdsmehVhmB_BoSbx" },
+          { name: "Cấp tỉnh", url: "https://drive.google.com/drive/folders/1aajSXVcih7woEeivS5XZolgdFapfb8xs" }
+        ]
+      },
+      {
+        id: 218,
+        title: "Cẩm nang TNTV các khối lớp",
+        description: "Cẩm nang hướng dẫn ôn thi Trạng Nguyên Tiếng Việt cho tất cả các khối lớp",
+        icon: BookOpen,
+        url: "https://drive.google.com/drive/folders/1NTz5zMRQztw8-6_yKUYNcQ5VDffv7RO6",
+        downloadCount: 1900,
+        hasLevels: false
+      },
+      {
+        id: 219,
+        title: "Violympic Lớp 3",
+        description: "Tài liệu ôn thi Violympic lớp 3 các cấp",
+        icon: Medal,
+        downloadCount: 2000,
+        hasLevels: true,
+        levels: [
+          { name: "Violympic - Vioedu - TN lớp 3", url: "https://drive.google.com/drive/folders/1Q0I09p8inNGk16HJPxTEjXHhVAm8grQk" },
+          { name: "Violympic lớp 3 cấp tỉnh", url: "https://drive.google.com/drive/folders/1CmQMPeCYpCg6HSWio35fzsn6R-BNUY2V" }
+        ]
+      },
+      {
+        id: 220,
+        title: "Bộ đề luyện Violympic – TNTV các khối lớp",
+        description: "Tổng hợp bộ đề luyện Violympic và TNTV cho tất cả các khối lớp",
+        icon: Medal,
+        url: "https://drive.google.com/drive/folders/1FJJe2I3hSjrBYcN7E8OxJVTtpXcESwgB",
+        downloadCount: 2500,
+        hasLevels: false
       }
     ]
   },
@@ -138,6 +239,33 @@ const resourcesData: Record<string, Category> = {
         url: "https://drive.google.com/file/d/1idINPLbajimzFSPyL-ehk7aud-uHlTFr/view",
         downloadCount: 1800,
         hasLevels: false
+      },
+      {
+        id: 404,
+        title: "Bộ đề thi Toán lớp 5 cuối học kì 1",
+        description: "Tuyển tập đề thi cuối học kỳ 1 môn Toán lớp 5",
+        icon: Target,
+        url: "https://drive.google.com/drive/folders/1cVxUTvS2qLsjKl-sthBx3L_mM7qfhmSf",
+        downloadCount: 1700,
+        hasLevels: false
+      },
+      {
+        id: 405,
+        title: "Khảo sát chất lượng môn Toán đầu năm lớp 5",
+        description: "Đề thi khảo sát chất lượng đầu năm môn Toán lớp 5",
+        icon: Compass,
+        url: "https://drive.google.com/drive/folders/1zFx8pegpGHGUSgiwQsJf_RF7h60DMtlW",
+        downloadCount: 1500,
+        hasLevels: false
+      },
+      {
+        id: 406,
+        title: "Tổng hợp các đề ôn thi cuối HK1 lớp 5 môn Toán",
+        description: "Bộ đề ôn luyện thi cuối học kỳ 1 môn Toán lớp 5",
+        icon: Brain,
+        url: "https://drive.google.com/drive/folders/1dsJ3wq7i_9Xjedoh0f75lMq49q6dglC2",
+        downloadCount: 1600,
+        hasLevels: false
       }
     ]
   },
@@ -171,6 +299,51 @@ const resourcesData: Record<string, Category> = {
         icon: Lightbulb,
         url: "https://docs.google.com/document/d/1a3kSmWIh09amxxLgBtpr8DeSOOYb4Yy2/edit?rtpof=true&sd=true",
         downloadCount: 1580,
+        hasLevels: false
+      },
+      {
+        id: 304,
+        title: "Luyện thi HSG Tiếng Việt lớp 3",
+        description: "Tài liệu ôn luyện thi học sinh giỏi môn Tiếng Việt lớp 3",
+        icon: Trophy,
+        url: "https://drive.google.com/drive/folders/19cnRpz81jcH_qMJAsV3yuu8SS9pLBgzV",
+        downloadCount: 1800,
+        hasLevels: false
+      },
+      {
+        id: 305,
+        title: "Tập làm văn lớp 3",
+        description: "Bộ tài liệu hướng dẫn tập làm văn cho học sinh lớp 3",
+        icon: Sparkles,
+        url: "https://drive.google.com/drive/folders/16uVyuDWKpnLX1lsQoxWAZHp6sDZrDx5P",
+        downloadCount: 1650,
+        hasLevels: false
+      },
+      {
+        id: 306,
+        title: "Tổng hợp Tiếng Việt lớp 3",
+        description: "Luyện từ và câu, chính tả, luyện viết cho học sinh lớp 3",
+        icon: BookOpen,
+        url: "https://drive.google.com/drive/folders/1LD8H4UY7J7wwnrV2_6tsBSl6PQcl2rDA",
+        downloadCount: 1750,
+        hasLevels: false
+      },
+      {
+        id: 307,
+        title: "Tuyển tập 80 đề thi HSG Tiếng Việt lớp 5 (có đáp án)",
+        description: "80 đề thi học sinh giỏi môn Tiếng Việt lớp 5 kèm đáp án chi tiết",
+        icon: GraduationCap,
+        url: "https://drive.google.com/drive/folders/1Kc5j_8V8asAB9pYRg0oR-YYV8xCUUn9r",
+        downloadCount: 2200,
+        hasLevels: false
+      },
+      {
+        id: 308,
+        title: "Tiếng Việt lớp 5 - Đề thi giữa HK1 và cuối HK1",
+        description: "Bộ đề thi giữa học kỳ 1 và cuối học kỳ 1 môn Tiếng Việt lớp 5",
+        icon: Target,
+        url: "https://drive.google.com/drive/folders/1DNYJsTUggdqHqPiJniw7GDkvsreIloG_",
+        downloadCount: 1900,
         hasLevels: false
       }
     ]
