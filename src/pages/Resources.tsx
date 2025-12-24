@@ -2,113 +2,106 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowLeft, BookOpen, Calculator, Globe, MapPin, Trophy, Palette,
-  FileText, Download, ExternalLink, Folder, Search, X
+  FileText, Download, ExternalLink, Folder, Search, X, ChevronRight
 } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
+// Type definitions
+interface SingleResource {
+  id: number;
+  title: string;
+  description: string;
+  type: "pdf" | "doc" | "folder";
+  url: string;
+  downloadCount: number;
+  hasLevels?: false;
+}
+
+interface LeveledResource {
+  id: number;
+  title: string;
+  description: string;
+  type: "pdf" | "doc" | "folder";
+  downloadCount: number;
+  hasLevels: true;
+  levels: {
+    name: string;
+    url: string;
+  }[];
+}
+
+type Resource = SingleResource | LeveledResource;
+
+interface Category {
+  name: string;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+  resources: Resource[];
+}
 
 // Dữ liệu tài liệu học tập
-const resourcesData = {
+const resourcesData: Record<string, Category> = {
   toan: {
     name: "Toán",
     icon: Calculator,
     color: "blue",
-    bgColor: "bg-blue-50",
-    borderColor: "border-blue-200",
-    iconBg: "bg-blue-100",
-    iconColor: "text-blue-600",
-    resources: [
-      {
-        id: 1,
-        title: "Bộ đề ôn tập Toán lớp 3 - Violympic",
-        description: "50+ đề thi thử Violympic Toán lớp 3 có đáp án chi tiết",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example1",
-        downloadCount: 1250
-      },
-      {
-        id: 2,
-        title: "Sách bài tập Toán tư duy lớp 4-5",
-        description: "Bài tập rèn luyện tư duy logic và giải toán nâng cao",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example2",
-        downloadCount: 890
-      },
-      {
-        id: 3,
-        title: "Tổng hợp công thức Toán tiểu học",
-        description: "Tất cả công thức cần nhớ từ lớp 1-5",
-        type: "doc",
-        url: "https://drive.google.com/drive/folders/example3",
-        downloadCount: 2100
-      }
-    ]
+    resources: []
   },
   tiengViet: {
     name: "Tiếng Việt",
     icon: BookOpen,
     color: "red",
-    bgColor: "bg-red-50",
-    borderColor: "border-red-200",
-    iconBg: "bg-red-100",
-    iconColor: "text-red-600",
-    resources: [
-      {
-        id: 4,
-        title: "Bộ đề Trạng Nguyên Tiếng Việt",
-        description: "Đề thi các vòng Trạng Nguyên TV từ 2020-2025",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example4",
-        downloadCount: 1580
-      },
-      {
-        id: 5,
-        title: "Tập làm văn mẫu lớp 4-5",
-        description: "100+ bài văn mẫu hay theo chủ đề",
-        type: "doc",
-        url: "https://drive.google.com/drive/folders/example5",
-        downloadCount: 3200
-      },
-      {
-        id: 6,
-        title: "Ngữ pháp Tiếng Việt cơ bản",
-        description: "Tài liệu ngữ pháp TV dành cho học sinh tiểu học",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example6",
-        downloadCount: 1120
-      }
-    ]
+    resources: []
   },
   tiengAnh: {
     name: "Tiếng Anh",
     icon: Globe,
     color: "green",
-    bgColor: "bg-green-50",
-    borderColor: "border-green-200",
-    iconBg: "bg-green-100",
-    iconColor: "text-green-600",
     resources: [
       {
-        id: 7,
-        title: "Bộ đề IOE các cấp",
-        description: "Đề thi Olympic Tiếng Anh IOE cấp trường, huyện, tỉnh",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example7",
-        downloadCount: 2450
+        id: 101,
+        title: "Tài liệu luyện phát âm Tiếng Anh (IPA, Trọng âm, Ngữ âm)",
+        description: "Tài liệu quý về phát âm chuẩn IPA, luyện trọng âm và ngữ âm tiếng Anh",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/example-phat-am",
+        downloadCount: 2500,
+        hasLevels: false
       },
       {
-        id: 8,
-        title: "Từ vựng Cambridge theo chủ đề",
-        description: "1000+ từ vựng tiếng Anh cơ bản có hình ảnh minh họa",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example8",
-        downloadCount: 1890
+        id: 102,
+        title: "Bộ tài liệu Tiếng Anh US-EDU từ Mẫu giáo đến Lớp 12",
+        description: "Trọn bộ tài liệu học Tiếng Anh theo chương trình US-EDU",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/example-usedu",
+        downloadCount: 3200,
+        hasLevels: false
       },
       {
-        id: 9,
-        title: "Ngữ pháp tiếng Anh tiểu học",
-        description: "Tổng hợp ngữ pháp từ cơ bản đến nâng cao",
-        type: "doc",
-        url: "https://drive.google.com/drive/folders/example9",
-        downloadCount: 1650
+        id: 103,
+        title: "Bộ tài liệu Tiếng Anh Global từ Lớp 1 đến Lớp 12",
+        description: "Tài liệu Tiếng Anh Global đầy đủ cho học sinh từ lớp 1 đến lớp 12",
+        type: "folder",
+        downloadCount: 4500,
+        hasLevels: true,
+        levels: [
+          { name: "Lớp 1", url: "https://drive.google.com/drive/folders/global-lop1" },
+          { name: "Lớp 2", url: "https://drive.google.com/drive/folders/global-lop2" },
+          { name: "Lớp 3", url: "https://drive.google.com/drive/folders/global-lop3" },
+          { name: "Lớp 4", url: "https://drive.google.com/drive/folders/global-lop4" },
+          { name: "Lớp 5", url: "https://drive.google.com/drive/folders/global-lop5" },
+          { name: "Lớp 6", url: "https://drive.google.com/drive/folders/global-lop6" },
+          { name: "Lớp 7", url: "https://drive.google.com/drive/folders/global-lop7" },
+          { name: "Lớp 8", url: "https://drive.google.com/drive/folders/global-lop8" },
+          { name: "Lớp 9", url: "https://drive.google.com/drive/folders/1D5isV8_J-ImswVLrYoMnQuLMMdQk8zgA?usp=sharing" },
+          { name: "Lớp 10", url: "https://drive.google.com/drive/folders/17MjSNGiJg21xzv0YNKhJ04NzJGyprhoh?usp=sharing" },
+          { name: "Lớp 11", url: "https://drive.google.com/drive/folders/1ZjnG8WkNCPPo49nLFoSZX00mzVFz2ZWz?usp=sharing" },
+          { name: "Lớp 12", url: "https://drive.google.com/drive/folders/1xyxoRieCj6b589csXd8M-tfsupHT3_P5?usp=sharing" }
+        ]
       }
     ]
   },
@@ -116,77 +109,122 @@ const resourcesData = {
     name: "Lịch sử - Địa lý",
     icon: MapPin,
     color: "amber",
-    bgColor: "bg-amber-50",
-    borderColor: "border-amber-200",
-    iconBg: "bg-amber-100",
-    iconColor: "text-amber-600",
-    resources: [
-      {
-        id: 10,
-        title: "Đề thi Violympic Lịch sử - Địa lý",
-        description: "Bộ đề ôn tập môn Sử - Địa trên Violympic",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example10",
-        downloadCount: 980
-      },
-      {
-        id: 11,
-        title: "Tóm tắt Lịch sử Việt Nam",
-        description: "Kiến thức lịch sử VN dành cho học sinh tiểu học",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example11",
-        downloadCount: 1340
-      },
-      {
-        id: 12,
-        title: "Bản đồ Địa lý Việt Nam",
-        description: "Bộ sưu tập bản đồ địa lý VN có chú thích chi tiết",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example12",
-        downloadCount: 760
-      }
-    ]
+    resources: []
   },
   toanQuocTe: {
     name: "Toán quốc tế",
     icon: Trophy,
     color: "indigo",
-    bgColor: "bg-indigo-50",
-    borderColor: "border-indigo-200",
-    iconBg: "bg-indigo-100",
-    iconColor: "text-indigo-600",
     resources: [
       {
-        id: 13,
-        title: "Đề thi Kangaroo Math 2020-2025",
-        description: "Trọn bộ đề thi Kangaroo có lời giải chi tiết",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example13",
-        downloadCount: 2780
+        id: 201,
+        title: "Bộ sách 180 Days of Math",
+        description: "Bộ sách luyện toán 180 ngày giúp học sinh rèn luyện kỹ năng toán học mỗi ngày",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/17WGgnsvjxEBInLlCLll7rbGKPg_jAfQ9",
+        downloadCount: 1850,
+        hasLevels: false
       },
       {
-        id: 14,
-        title: "Đề thi SASMO các năm",
-        description: "Bộ đề SASMO Level 1-5 kèm đáp án",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example14",
-        downloadCount: 1920
+        id: 202,
+        title: "Bộ sách Common Core Math",
+        description: "Tài liệu toán học theo chuẩn Common Core của Mỹ",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/1hRoiefN8-ZS7m-hcuUrmzcsm4vq3ofxT",
+        downloadCount: 1620,
+        hasLevels: false
       },
       {
-        id: 15,
-        title: "Tài liệu ôn thi AMC 8",
-        description: "Sách và đề luyện thi AMC 8 cho học sinh tiểu học",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example15",
-        downloadCount: 1450
+        id: 203,
+        title: "Bộ sách In Step Maths - Singapore Math",
+        description: "Phương pháp toán Singapore nổi tiếng thế giới",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/1SoSALJArxQGV15PbqcZZW0Ev5nFZ7ARM",
+        downloadCount: 2100,
+        hasLevels: false
       },
       {
-        id: 16,
-        title: "Đề thi TIMO/HKIMO",
-        description: "Bộ đề Olympic Toán quốc tế Thái Lan & Hồng Kông",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example16",
-        downloadCount: 1680
+        id: 204,
+        title: "Bộ sách Master Skills Math",
+        description: "Sách rèn luyện kỹ năng toán học nâng cao",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/1DMgpHf-GqpCdrV5EBxqcKxl3ZccB2hFu",
+        downloadCount: 1450,
+        hasLevels: false
+      },
+      {
+        id: 205,
+        title: "Bộ sách Math Guide G1-G6 - Singapore Math",
+        description: "Hướng dẫn toán Singapore cho học sinh từ Grade 1 đến Grade 6",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/1fuz2THBSHduFAz3gifiNZ61H8ksTzmMS",
+        downloadCount: 1980,
+        hasLevels: false
+      },
+      {
+        id: 206,
+        title: "Bộ sách Math In My World",
+        description: "Sách toán ứng dụng trong đời sống thực tế",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/1fME5VvuiOA3_dVFqNkRMS-drcJJEr8ew",
+        downloadCount: 1320,
+        hasLevels: false
+      },
+      {
+        id: 207,
+        title: "Bộ sách Math Minutes G1-G7",
+        description: "Bài tập toán ngắn giúp luyện tập nhanh mỗi ngày từ Grade 1 đến Grade 7",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/17zm_9wurRReNK-M9kEgZLbU8SjBPHZb3",
+        downloadCount: 1680,
+        hasLevels: false
+      },
+      {
+        id: 208,
+        title: "Bộ sách Oxford Mathematics PYP",
+        description: "Sách toán Oxford theo chương trình Primary Years Programme",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/oxford-math-pyp",
+        downloadCount: 1520,
+        hasLevels: false
+      },
+      {
+        id: 209,
+        title: "Bộ sách Singapore Math Challenge Word Problems G2-G5",
+        description: "Bài toán đố theo phương pháp Singapore từ Grade 2 đến Grade 5",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/singapore-word-problems",
+        downloadCount: 1890,
+        hasLevels: false
+      },
+      {
+        id: 210,
+        title: "Bộ sách Toán Sing",
+        description: "Trọn bộ sách toán Singapore cho học sinh tiểu học",
+        type: "folder",
+        url: "https://drive.google.com/drive/folders/toan-sing",
+        downloadCount: 2200,
+        hasLevels: false
+      },
+      {
+        id: 211,
+        title: "Kỳ thi Toán quốc tế TIMO",
+        description: "Tài liệu ôn thi và đề thi Olympic Toán quốc tế Thái Lan (TIMO) các khối",
+        type: "folder",
+        downloadCount: 3500,
+        hasLevels: true,
+        levels: [
+          { name: "Khối Mẫu giáo", url: "https://drive.google.com/drive/folders/timo-mn" },
+          { name: "Khối 1", url: "https://drive.google.com/drive/folders/timo-k1" },
+          { name: "Khối 2", url: "https://drive.google.com/drive/folders/timo-k2" },
+          { name: "Khối 3", url: "https://drive.google.com/drive/folders/timo-k3" },
+          { name: "Khối 4", url: "https://drive.google.com/drive/folders/timo-k4" },
+          { name: "Khối 5", url: "https://drive.google.com/drive/folders/timo-k5" },
+          { name: "Khối 6", url: "https://drive.google.com/drive/folders/timo-k6" },
+          { name: "Khối 7", url: "https://drive.google.com/drive/folders/timo-k7" },
+          { name: "Khối 8", url: "https://drive.google.com/drive/folders/timo-k8" },
+          { name: "Khối 9", url: "https://drive.google.com/file/d/1vSuONzhmo6O300rwaCTCGrHEUcuX30Ag/view?usp=drive_link" }
+        ]
       }
     ]
   },
@@ -194,55 +232,29 @@ const resourcesData = {
     name: "Kỹ năng - Năng khiếu",
     icon: Palette,
     color: "pink",
-    bgColor: "bg-pink-50",
-    borderColor: "border-pink-200",
-    iconBg: "bg-pink-100",
-    iconColor: "text-pink-600",
-    resources: [
-      {
-        id: 17,
-        title: "Sách hướng dẫn lập trình Scratch",
-        description: "Tài liệu học lập trình Scratch từ cơ bản đến nâng cao",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example17",
-        downloadCount: 1560
-      },
-      {
-        id: 18,
-        title: "Bài tập rèn luyện tư duy Bebras",
-        description: "100+ bài tập tư duy thuật toán theo chuẩn Bebras",
-        type: "pdf",
-        url: "https://drive.google.com/drive/folders/example18",
-        downloadCount: 890
-      },
-      {
-        id: 19,
-        title: "Kỹ năng viết thư UPU",
-        description: "Hướng dẫn viết thư quốc tế UPU kèm bài mẫu đạt giải",
-        type: "doc",
-        url: "https://drive.google.com/drive/folders/example19",
-        downloadCount: 720
-      }
-    ]
+    resources: []
   }
 };
 
-const colorClasses: Record<string, { bg: string; border: string; iconBg: string; iconColor: string; hoverBg: string }> = {
-  blue: { bg: "bg-blue-50", border: "border-blue-200", iconBg: "bg-blue-100", iconColor: "text-blue-600", hoverBg: "hover:bg-blue-100" },
-  red: { bg: "bg-red-50", border: "border-red-200", iconBg: "bg-red-100", iconColor: "text-red-600", hoverBg: "hover:bg-red-100" },
-  green: { bg: "bg-green-50", border: "border-green-200", iconBg: "bg-green-100", iconColor: "text-green-600", hoverBg: "hover:bg-green-100" },
-  amber: { bg: "bg-amber-50", border: "border-amber-200", iconBg: "bg-amber-100", iconColor: "text-amber-600", hoverBg: "hover:bg-amber-100" },
-  indigo: { bg: "bg-indigo-50", border: "border-indigo-200", iconBg: "bg-indigo-100", iconColor: "text-indigo-600", hoverBg: "hover:bg-indigo-100" },
-  pink: { bg: "bg-pink-50", border: "border-pink-200", iconBg: "bg-pink-100", iconColor: "text-pink-600", hoverBg: "hover:bg-pink-100" }
+const colorClasses: Record<string, { bg: string; border: string; iconBg: string; iconColor: string; hoverBg: string; levelBg: string; levelHover: string }> = {
+  blue: { bg: "bg-blue-50", border: "border-blue-200", iconBg: "bg-blue-100", iconColor: "text-blue-600", hoverBg: "hover:bg-blue-100", levelBg: "bg-blue-500", levelHover: "hover:bg-blue-600" },
+  red: { bg: "bg-red-50", border: "border-red-200", iconBg: "bg-red-100", iconColor: "text-red-600", hoverBg: "hover:bg-red-100", levelBg: "bg-red-500", levelHover: "hover:bg-red-600" },
+  green: { bg: "bg-green-50", border: "border-green-200", iconBg: "bg-green-100", iconColor: "text-green-600", hoverBg: "hover:bg-green-100", levelBg: "bg-green-500", levelHover: "hover:bg-green-600" },
+  amber: { bg: "bg-amber-50", border: "border-amber-200", iconBg: "bg-amber-100", iconColor: "text-amber-600", hoverBg: "hover:bg-amber-100", levelBg: "bg-amber-500", levelHover: "hover:bg-amber-600" },
+  indigo: { bg: "bg-indigo-50", border: "border-indigo-200", iconBg: "bg-indigo-100", iconColor: "text-indigo-600", hoverBg: "hover:bg-indigo-100", levelBg: "bg-indigo-500", levelHover: "hover:bg-indigo-600" },
+  pink: { bg: "bg-pink-50", border: "border-pink-200", iconBg: "bg-pink-100", iconColor: "text-pink-600", hoverBg: "hover:bg-pink-100", levelBg: "bg-pink-500", levelHover: "hover:bg-pink-600" }
 };
 
 const Resources = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedResource, setSelectedResource] = useState<LeveledResource | null>(null);
+  const [selectedColor, setSelectedColor] = useState<string>("indigo");
 
   const categories = Object.entries(resourcesData);
 
   const filteredCategories = categories.filter(([key, category]) => {
+    if (category.resources.length === 0) return false;
     if (selectedCategory && key !== selectedCategory) return false;
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
@@ -256,6 +268,15 @@ const Resources = () => {
     }
     return true;
   });
+
+  const handleResourceClick = (resource: Resource, color: string) => {
+    if (resource.hasLevels) {
+      setSelectedResource(resource);
+      setSelectedColor(color);
+    } else {
+      window.open((resource as SingleResource).url, '_blank');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
@@ -334,7 +355,7 @@ const Resources = () => {
           >
             Tất cả
           </button>
-          {categories.map(([key, category]) => {
+          {categories.filter(([, cat]) => cat.resources.length > 0).map(([key, category]) => {
             const Icon = category.icon;
             const colors = colorClasses[category.color];
             return (
@@ -387,20 +408,25 @@ const Resources = () => {
                 {/* Resources Cards */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredResources.map((resource) => (
-                    <a
+                    <button
                       key={resource.id}
-                      href={resource.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`group block p-5 rounded-2xl border-2 ${colors.border} ${colors.bg} ${colors.hoverBg} transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                      onClick={() => handleResourceClick(resource, category.color)}
+                      className={`group block p-5 rounded-2xl border-2 ${colors.border} ${colors.bg} ${colors.hoverBg} transition-all duration-300 hover:shadow-lg hover:-translate-y-1 text-left w-full`}
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div className={`w-10 h-10 ${colors.iconBg} rounded-xl flex items-center justify-center`}>
                           <FileText className={`w-5 h-5 ${colors.iconColor}`} />
                         </div>
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${colors.iconBg} ${colors.iconColor} uppercase`}>
-                          {resource.type}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          {resource.hasLevels && (
+                            <span className={`px-2 py-1 text-xs font-medium rounded-full ${colors.levelBg} text-white`}>
+                              {resource.levels.length} cấp độ
+                            </span>
+                          )}
+                          <span className={`px-2 py-1 text-xs font-medium rounded-full ${colors.iconBg} ${colors.iconColor} uppercase`}>
+                            {resource.type}
+                          </span>
+                        </div>
                       </div>
                       
                       <h3 className="font-semibold text-slate-800 mb-2 line-clamp-2 group-hover:text-slate-900">
@@ -416,11 +442,11 @@ const Resources = () => {
                           <span>{resource.downloadCount.toLocaleString()} lượt tải</span>
                         </div>
                         <div className={`flex items-center gap-1 text-sm font-medium ${colors.iconColor} group-hover:gap-2 transition-all`}>
-                          <span>Tải xuống</span>
-                          <ExternalLink className="w-4 h-4" />
+                          <span>{resource.hasLevels ? 'Xem chi tiết' : 'Tải xuống'}</span>
+                          {resource.hasLevels ? <ChevronRight className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
                         </div>
                       </div>
-                    </a>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -437,6 +463,38 @@ const Resources = () => {
           </div>
         )}
       </section>
+
+      {/* Level Selection Dialog */}
+      <Dialog open={!!selectedResource} onOpenChange={() => setSelectedResource(null)}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-slate-800 pr-8">
+              {selectedResource?.title}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="mt-4">
+            <p className="text-slate-500 mb-4">{selectedResource?.description}</p>
+            <p className="text-sm font-medium text-slate-600 mb-3">Chọn cấp độ / lớp học:</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[300px] overflow-y-auto">
+              {selectedResource?.levels.map((level, index) => {
+                const colors = colorClasses[selectedColor];
+                return (
+                  <a
+                    key={index}
+                    href={level.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-between p-3 rounded-xl ${colors.bg} ${colors.border} border-2 ${colors.hoverBg} transition-all hover:shadow-md group`}
+                  >
+                    <span className="font-medium text-slate-700">{level.name}</span>
+                    <ExternalLink className={`w-4 h-4 ${colors.iconColor} opacity-0 group-hover:opacity-100 transition-opacity`} />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Footer */}
       <footer className="bg-slate-800 text-white py-8">
