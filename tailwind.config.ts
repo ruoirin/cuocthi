@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -14,23 +19,20 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Inter', 'sans-serif'],
-        body: ['Be Vietnam Pro', 'sans-serif'],
+        sans: ["Be Vietnam Pro", "sans-serif"],
+        heading: ["Inter", "sans-serif"],
       },
       fontSize: {
-        'body': ['14px', { lineHeight: '1.6' }],
-        'heading-sm': ['18px', { lineHeight: '1.4' }],
-        'heading-md': ['20px', { lineHeight: '1.3' }],
-        'heading-lg': ['24px', { lineHeight: '1.2' }],
+        "body": ["14px", { lineHeight: "1.6" }],
+        "body-lg": ["16px", { lineHeight: "1.6" }],
+        "heading-sm": ["18px", { lineHeight: "1.3", fontWeight: "700" }],
+        "heading": ["24px", { lineHeight: "1.2", fontWeight: "700" }],
+        "heading-lg": ["32px", { lineHeight: "1.1", fontWeight: "800" }],
+        "heading-xl": ["48px", { lineHeight: "1.05", fontWeight: "900" }],
       },
       spacing: {
-        'card': '24px',
-      },
-      boxShadow: {
-        'card': 'var(--shadow-card)',
-        'card-hover': 'var(--shadow-card-hover)',
-        'soft': 'var(--shadow-soft)',
-        'glow': 'var(--shadow-glow)',
+        "card": "24px",
+        "section": "80px",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -66,103 +68,65 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        blue: {
-          50: "hsl(var(--blue-50))",
-          100: "hsl(var(--blue-100))",
-          600: "hsl(var(--blue-600))",
-          700: "hsl(var(--blue-700))",
-          800: "hsl(var(--blue-800))",
-          900: "hsl(var(--blue-900))",
-        },
-        indigo: {
-          50: "hsl(var(--indigo-50))",
-          100: "hsl(var(--indigo-100))",
-          600: "hsl(var(--indigo-600))",
-          900: "hsl(var(--indigo-900))",
-        },
-        purple: {
-          600: "hsl(var(--purple-600))",
-        },
-        green: {
-          50: "hsl(var(--green-50))",
-          100: "hsl(var(--green-100))",
-          600: "hsl(var(--green-600))",
-          700: "hsl(var(--green-700))",
-        },
-        orange: {
-          600: "hsl(var(--orange-600))",
-        },
-        red: {
-          50: "hsl(var(--red-50))",
-          100: "hsl(var(--red-100))",
-          600: "hsl(var(--red-600))",
-          700: "hsl(var(--red-700))",
-        },
-        yellow: {
-          300: "hsl(var(--yellow-300))",
-          400: "hsl(var(--yellow-400))",
-        },
-        pink: {
-          600: "hsl(var(--pink-600))",
-        },
-        amber: {
-          50: "hsl(var(--amber-50))",
-          100: "hsl(var(--amber-100))",
-          500: "hsl(var(--amber-500))",
-          800: "hsl(var(--amber-800))",
-          900: "hsl(var(--amber-900))",
-        },
-        teal: {
-          50: "hsl(var(--teal-50))",
-          100: "hsl(var(--teal-100))",
-          600: "hsl(var(--teal-600))",
-          700: "hsl(var(--teal-700))",
-        },
-        cyan: {
-          50: "hsl(var(--cyan-50))",
-          100: "hsl(var(--cyan-100))",
-          600: "hsl(var(--cyan-600))",
-          700: "hsl(var(--cyan-700))",
-        },
-        slate: {
-          50: "hsl(var(--slate-50))",
-          100: "hsl(var(--slate-100))",
-          200: "hsl(var(--slate-200))",
-          300: "hsl(var(--slate-300))",
-          400: "hsl(var(--slate-400))",
-          500: "hsl(var(--slate-500))",
-          600: "hsl(var(--slate-600))",
-          700: "hsl(var(--slate-700))",
-          800: "hsl(var(--slate-800))",
-          900: "hsl(var(--slate-900))",
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
         },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xl: "1rem",
+        "2xl": "1.25rem",
+        "3xl": "1.5rem",
+      },
+      boxShadow: {
+        "card": "var(--shadow-card)",
+        "card-hover": "var(--shadow-card-hover)",
+        "soft": "var(--shadow-soft)",
+        "glow": "var(--shadow-glow)",
+        "btn": "0 4px 14px 0 hsla(24, 95%, 53%, 0.39)",
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "slide-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fade-in 0.5s ease-out",
+        "scale-in": "scale-in 0.3s ease-out",
+        "slide-up": "slide-up 0.6s ease-out",
+        "float": "float 3s ease-in-out infinite",
       },
     },
   },

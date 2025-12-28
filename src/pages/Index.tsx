@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Search, Calendar, Award, BookOpen, Music, Activity, 
   ChevronRight, X, ExternalLink, Users, Star, 
-  Filter, Trophy, Globe, Code, Clock, AlertCircle, Calculator, BarChart3
+  Trophy, Globe, Code, Clock, AlertCircle, Calculator, BarChart3,
+  Sparkles, GraduationCap, Play, ArrowRight
 } from 'lucide-react';
 import ResourcesBanner from '@/components/ResourcesBanner';
+import { Button } from '@/components/ui/button';
 
 // --- DỮ LIỆU CUỘC THI: CẬP NHẬT NGÀY 13/12/2025 ---
 const competitionsData = [
@@ -770,18 +773,31 @@ const ContestIcon = ({ type, className }: { type: string; className?: string }) 
 const ContestLogoOrIcon = ({ contest, color }: { contest: any; color: string }) => {
   const [imgError, setImgError] = useState(false);
 
-  const renderIcon = () => (
-    <div className={`p-3 rounded-2xl bg-${color}-50 text-${color}-600 ring-1 ring-${color}-100 flex items-center justify-center flex-shrink-0`}>
-      <ContestIcon type={contest.icon} className={`h-6 w-6 text-${color}-600`} />
-    </div>
-  );
+  const colorMap: Record<string, string> = {
+    blue: 'bg-blue-100 text-blue-600',
+    red: 'bg-red-100 text-red-600',
+    yellow: 'bg-amber-100 text-amber-600',
+    green: 'bg-emerald-100 text-emerald-600',
+    indigo: 'bg-indigo-100 text-indigo-600',
+    purple: 'bg-purple-100 text-purple-600',
+    pink: 'bg-pink-100 text-pink-600',
+    cyan: 'bg-cyan-100 text-cyan-600',
+    teal: 'bg-teal-100 text-teal-600',
+    orange: 'bg-orange-100 text-orange-600',
+  };
+
+  const colorClass = colorMap[color] || 'bg-slate-100 text-slate-600';
 
   if (!contest.logo || imgError) {
-    return renderIcon();
+    return (
+      <div className={`w-14 h-14 rounded-2xl ${colorClass} flex items-center justify-center flex-shrink-0`}>
+        <ContestIcon type={contest.icon} className="h-7 w-7" />
+      </div>
+    );
   }
 
   return (
-    <div className="p-2 rounded-2xl bg-white ring-1 ring-slate-100 flex items-center justify-center h-14 w-14 overflow-hidden flex-shrink-0">
+    <div className="w-14 h-14 rounded-2xl bg-white ring-1 ring-slate-100 flex items-center justify-center overflow-hidden flex-shrink-0 p-2">
       <img 
         src={contest.logo} 
         alt={`${contest.name} logo`} 
@@ -819,8 +835,8 @@ const Index = () => {
 
   const getStatusClasses = (type: string) => {
     switch(type) {
-      case 'active': return "bg-green-100 text-green-700 border-green-100";
-      case 'urgent': return "bg-red-100 text-red-700 border-red-100 animate-pulse";
+      case 'active': return "bg-emerald-100 text-emerald-700 border-emerald-200";
+      case 'urgent': return "bg-red-100 text-red-700 border-red-200 animate-pulse";
       case 'upcoming': return "bg-blue-50 text-blue-600 border-blue-100";
       default: return "bg-slate-100 text-slate-600 border-slate-200";
     }
@@ -835,67 +851,134 @@ const Index = () => {
     }
   }, [selectedContest]);
 
+  const categories = [
+    { id: 'all', label: 'Tất cả', icon: Trophy },
+    { id: 'academic', label: 'Học thuật', icon: BookOpen },
+    { id: 'math_cs_int', label: 'Toán - Tin QT', icon: Calculator },
+    { id: 'english_int', label: 'Tiếng Anh QT', icon: Globe },
+    { id: 'talent', label: 'Năng khiếu', icon: Music },
+    { id: 'sports', label: 'Thể thao', icon: Activity },
+    { id: 'danang', label: 'Đà Nẵng', icon: Globe }
+  ];
+
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-10">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       
-      {/* --- HEADER --- */}
-      <header className="bg-blue-800 text-white shadow-xl sticky top-0 z-40 border-b-4 border-yellow-400">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex justify-between items-center gap-4">
-            {/* Logo Area */}
-            <div 
-              className="flex items-center space-x-3 cursor-pointer group flex-shrink-0" 
-              onClick={() => { setActiveCategory('all'); setSearchTerm(''); }}
-            >
-              <div className="bg-white p-2 rounded-xl shadow-lg relative overflow-hidden">
-                <Trophy className="h-6 w-6 text-blue-800 relative z-10" />
+      {/* --- HERO SECTION (Prodigy-style) --- */}
+      <section className="relative overflow-hidden bg-gradient-hero animate-gradient">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl" />
+        </div>
+        
+        <div className="relative container mx-auto px-4 py-16 md:py-24">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-6">
+              <Sparkles className="w-4 h-4" />
+              Năm học 2025-2026
+            </div>
+            
+            {/* Main heading */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-black text-white mb-6 leading-tight">
+              Học mà chơi,<br />
+              <span className="text-yellow-300">Chơi mà học!</span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-8">
+              Tổng hợp tất cả cuộc thi học thuật, năng khiếu và thể thao dành cho học sinh tiểu học. Cập nhật lịch thi, tài liệu ôn tập và thông tin chi tiết.
+            </p>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Button 
+                size="lg" 
+                className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-lg rounded-xl btn-shadow"
+                onClick={() => document.getElementById('contests')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                <Play className="w-5 h-5 mr-2" />
+                Khám phá cuộc thi
+              </Button>
+              <Link to="/tai-lieu">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold px-8 py-6 text-lg rounded-xl"
+                >
+                  <BookOpen className="w-5 h-5 mr-2" />
+                  Tài liệu miễn phí
+                </Button>
+              </Link>
+            </div>
+            
+            {/* Search Bar */}
+            <div className="max-w-xl mx-auto relative">
+              <input 
+                type="text" 
+                placeholder="Tìm kiếm: TIMO, IOE, Cờ vua..." 
+                className="w-full py-4 px-6 pl-14 rounded-2xl text-slate-800 bg-white/95 focus:outline-none focus:ring-4 focus:ring-white/30 shadow-xl placeholder:text-slate-400 text-lg"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 h-6 w-6" />
+              {searchTerm && (
+                <button 
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Stats bar */}
+        <div className="relative bg-white/10 backdrop-blur-sm border-t border-white/20">
+          <div className="container mx-auto px-4 py-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">{competitionsData.length}+</div>
+                <div className="text-white/80 text-sm">Cuộc thi</div>
               </div>
-              <div className="hidden sm:block">
-                <h1 className="text-lg font-bold uppercase tracking-wide leading-none">
-                  Thi Đua <span className="text-yellow-300">Tiểu Học</span>
-                </h1>
-                <p className="text-[10px] text-blue-200 font-medium mt-1">Cổng thông tin Quốc gia 2025-2026</p>
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">8</div>
+                <div className="text-white/80 text-sm">Danh mục</div>
               </div>
-              <div className="sm:hidden">
-                <h1 className="text-lg font-bold uppercase">EduContest</h1>
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">50K+</div>
+                <div className="text-white/80 text-sm">Học sinh tham gia</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-bold">24/7</div>
+                <div className="text-white/80 text-sm">Cập nhật liên tục</div>
               </div>
             </div>
-
           </div>
+        </div>
+      </section>
 
-          {/* Search Bar */}
-          <div className="mt-4 pb-2 relative max-w-2xl mx-auto">
-            <input 
-              type="text" 
-              placeholder="Tìm kiếm: TIMO, IOE, Cờ vua..." 
-              className="w-full py-3 px-5 pl-11 rounded-xl text-slate-800 bg-white/95 focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-lg placeholder:text-slate-400"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <Search className="absolute left-4 top-3.5 text-slate-400 h-5 w-5" />
-          </div>
+      {/* --- RESOURCES BANNER --- */}
+      <ResourcesBanner />
 
-          {/* Category Tabs - Below Search Bar */}
-          <div className="mt-4 pb-3 overflow-x-auto">
-            <div className="flex space-x-2 min-w-max px-1">
-              {[
-                { id: 'all', label: 'Tất cả', icon: Trophy },
-                { id: 'academic', label: 'Học thuật', icon: BookOpen },
-                { id: 'math_cs_int', label: 'Toán - Tin QT', icon: Calculator },
-                { id: 'english_int', label: 'Tiếng Anh QT', icon: Globe },
-                { id: 'talent', label: 'Năng khiếu', icon: Music },
-                { id: 'sports', label: 'Thể thao', icon: Activity },
-                { id: 'danang', label: 'Đà Nẵng', icon: Globe }
-              ].map((tab) => {
+      {/* --- CATEGORY TABS --- */}
+      <section className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div className="container mx-auto px-4">
+          <div className="py-4 overflow-x-auto">
+            <div className="flex space-x-2 min-w-max">
+              {categories.map((tab) => {
                 const Icon = tab.icon;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveCategory(tab.id)}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+                    className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold transition-all whitespace-nowrap ${
                       activeCategory === tab.id 
-                      ? 'bg-white text-blue-900 shadow-md' 
-                      : 'bg-blue-900/50 text-blue-100 hover:bg-blue-700/50'
+                      ? 'bg-gradient-primary text-white shadow-lg shadow-primary/30' 
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -906,102 +989,92 @@ const Index = () => {
             </div>
           </div>
         </div>
-      </header>
-
-      {/* --- RESOURCES BANNER --- */}
-      <ResourcesBanner />
+      </section>
 
       {/* --- INFO BANNER --- */}
-      <div className="bg-indigo-50 border-b border-indigo-100 py-3 px-4">
+      <div className="bg-amber-50 border-b border-amber-100 py-3 px-4">
         <div className="container mx-auto flex items-center justify-center text-center space-x-2">
-          <Clock className="h-4 w-4 text-indigo-600 flex-shrink-0" />
-          <p className="text-sm text-indigo-900 font-medium truncate">
-            Cập nhật trạng thái tháng <span className="font-bold">12/2025</span>.
+          <Clock className="h-4 w-4 text-amber-600 flex-shrink-0" />
+          <p className="text-sm text-amber-900 font-medium truncate">
+            Cập nhật trạng thái tháng <span className="font-bold">12/2025</span>. Bấm vào mỗi thẻ để xem chi tiết.
           </p>
         </div>
       </div>
 
       {/* --- MAIN CONTENT --- */}
-      <main className="container mx-auto px-4 py-8">
+      <main id="contests" className="container mx-auto px-4 py-12">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
-          <h2 className="text-xl font-bold text-slate-800 flex items-center">
-            {activeCategory === 'academic' && <BookOpen className="mr-2 text-blue-600" />}
-            {activeCategory === 'math_cs_int' && <Calculator className="mr-2 text-indigo-600" />}
-            {activeCategory === 'talent' && <Music className="mr-2 text-purple-600" />}
-            {activeCategory === 'sports' && <Activity className="mr-2 text-orange-600" />}
-            {activeCategory === 'danang' && <Globe className="mr-2 text-teal-600" />}
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+          <h2 className="text-2xl md:text-3xl font-heading font-bold text-slate-800 flex items-center">
             {getCategoryLabel(activeCategory)}
           </h2>
-          <span className="text-xs font-bold bg-white border border-slate-200 px-3 py-1.5 rounded-full text-slate-600 shadow-sm w-fit">
-            Tìm thấy {filteredContests.length} kết quả
+          <span className="text-sm font-semibold bg-primary/10 text-primary px-4 py-2 rounded-full w-fit">
+            Tìm thấy {filteredContests.length} cuộc thi
           </span>
         </div>
 
         {/* GRID LAYOUT */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredContests.map((contest) => (
+          {filteredContests.map((contest, index) => (
             <div 
               key={contest.id} 
               onClick={() => setSelectedContest(contest)}
-              className="group bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col h-full relative"
+              className="group bg-white rounded-2xl border border-slate-200 card-hover cursor-pointer flex flex-col h-full animate-fade-in"
+              style={{ animationDelay: `${index * 50}ms` }}
             >
               {/* Card Header */}
-              <div className="p-5 flex items-start justify-between">
-                
-                {/* LOGO OR ICON COMPONENT */}
+              <div className="p-6 flex items-start justify-between gap-3">
                 <ContestLogoOrIcon contest={contest} color={contest.color} />
-
-                <div className="flex flex-col items-end gap-1">
-                  <span className={`px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider border shadow-sm ${getStatusClasses(contest.statusType)}`}>
+                <div className="flex flex-col items-end gap-2">
+                  <span className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider border ${getStatusClasses(contest.statusType)}`}>
                     {contest.status}
                   </span>
-                  <span className="text-[10px] font-medium text-slate-400">{contest.year}</span>
+                  <span className="text-xs font-medium text-slate-400">{contest.year}</span>
                 </div>
               </div>
               
               {/* Card Body */}
-              <div className="px-5 pb-4 flex-grow">
-                <h3 className="text-lg font-bold text-slate-800 mb-1 group-hover:text-blue-700 line-clamp-2 leading-snug min-h-[3rem]">
+              <div className="px-6 pb-4 flex-grow">
+                <h3 className="text-lg font-heading font-bold text-slate-800 mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                   {contest.name}
                 </h3>
                 <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-4 truncate">
                   {contest.organizer}
                 </p>
                 
-                <div className="pt-3 border-t border-slate-50 space-y-2">
+                <div className="pt-4 border-t border-slate-100 space-y-3">
                   <div className="flex items-center text-sm text-slate-600">
-                    <Calendar className="h-4 w-4 mr-2.5 text-slate-400 flex-shrink-0" />
+                    <Calendar className="h-4 w-4 mr-3 text-primary/60 flex-shrink-0" />
                     <span className="truncate font-medium">
                       {contest.details.schedule.find((s: any) => s.phase.includes("Chung kết") || s.phase.includes("Quốc gia") || s.phase.includes("Ngày thi"))?.time || "Cập nhật sau"}
                     </span>
                   </div>
                   <div className="flex items-center text-sm text-slate-600">
-                    <Users className="h-4 w-4 mr-2.5 text-slate-400 flex-shrink-0" />
+                    <Users className="h-4 w-4 mr-3 text-primary/60 flex-shrink-0" />
                     <span className="truncate">{contest.details.target}</span>
                   </div>
                 </div>
               </div>
 
               {/* Card Footer */}
-              <div className="px-5 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between rounded-b-2xl group-hover:bg-blue-50/50 transition-colors">
+              <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between rounded-b-2xl group-hover:bg-primary/5 transition-colors">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-slate-500 font-medium group-hover:text-blue-600">Xem chi tiết</span>
+                  <span className="text-sm text-slate-500 font-medium group-hover:text-primary">Xem chi tiết</span>
                   {contest.rankingUrl && (
                     <a 
                       href={contest.rankingUrl}
                       target="_blank"
                       rel="noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-amber-100 text-amber-700 text-[10px] font-semibold hover:bg-amber-200 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-100 text-amber-700 text-xs font-semibold hover:bg-amber-200 transition-colors"
                     >
-                      <BarChart3 className="h-3 w-3" />
+                      <BarChart3 className="h-3.5 w-3.5" />
                       Xếp hạng
                     </a>
                   )}
                 </div>
-                <ChevronRight className="h-4 w-4 text-slate-400 group-hover:text-blue-600 transform group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="h-5 w-5 text-slate-400 group-hover:text-primary transform group-hover:translate-x-1 transition-all" />
               </div>
             </div>
           ))}
@@ -1009,20 +1082,20 @@ const Index = () => {
 
         {/* Empty State */}
         {filteredContests.length === 0 && (
-          <div className="flex flex-col items-center justify-center py-20 text-center bg-white rounded-2xl border border-dashed border-slate-300">
-            <div className="bg-slate-50 p-6 rounded-full mb-4">
-              <Search className="h-10 w-10 text-slate-300" />
+          <div className="flex flex-col items-center justify-center py-20 text-center bg-white rounded-3xl border-2 border-dashed border-slate-200">
+            <div className="bg-slate-50 p-8 rounded-full mb-6">
+              <Search className="h-12 w-12 text-slate-300" />
             </div>
-            <h3 className="text-lg font-bold text-slate-700">Không tìm thấy kết quả</h3>
-            <p className="text-slate-500 max-w-xs mx-auto mt-2 text-sm">
+            <h3 className="text-xl font-heading font-bold text-slate-700">Không tìm thấy kết quả</h3>
+            <p className="text-slate-500 max-w-sm mx-auto mt-3">
               Hãy thử tìm kiếm với từ khóa khác hoặc xóa bộ lọc.
             </p>
-            <button 
+            <Button 
               onClick={() => {setSearchTerm(''); setActiveCategory('all')}} 
-              className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+              className="mt-8 bg-gradient-primary text-white font-semibold px-6 py-3 rounded-xl btn-shadow"
             >
               Xem tất cả cuộc thi
-            </button>
+            </Button>
           </div>
         )}
       </main>
@@ -1031,24 +1104,22 @@ const Index = () => {
       {selectedContest && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" onClick={() => setSelectedContest(null)}>
           <div 
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
+            className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="bg-white border-b border-slate-100 p-5 flex justify-between items-start sticky top-0 z-10">
+            <div className="bg-gradient-to-r from-slate-50 to-white border-b border-slate-100 p-6 flex justify-between items-start sticky top-0 z-10">
               <div className="flex items-start space-x-4 pr-8">
-                
                 <div className="hidden sm:block">
                   <ContestLogoOrIcon contest={selectedContest} color={selectedContest.color} />
                 </div>
-
                 <div>
-                  <h2 className="text-xl md:text-2xl font-bold text-slate-900 leading-tight">{selectedContest.name}</h2>
-                  <div className="flex flex-wrap items-center gap-2 mt-2">
-                    <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600 uppercase border border-slate-200">
+                  <h2 className="text-xl md:text-2xl font-heading font-bold text-slate-900 leading-tight">{selectedContest.name}</h2>
+                  <div className="flex flex-wrap items-center gap-2 mt-3">
+                    <span className="text-xs font-bold px-3 py-1 rounded-lg bg-slate-100 text-slate-600 uppercase border border-slate-200">
                       {selectedContest.organizer}
                     </span>
-                    <span className={`text-xs font-bold px-2 py-0.5 rounded border ${getStatusClasses(selectedContest.statusType)}`}>
+                    <span className={`text-xs font-bold px-3 py-1 rounded-lg border ${getStatusClasses(selectedContest.statusType)}`}>
                       {selectedContest.status}
                     </span>
                   </div>
@@ -1056,7 +1127,7 @@ const Index = () => {
               </div>
               <button 
                 onClick={() => setSelectedContest(null)} 
-                className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+                className="p-2 hover:bg-slate-100 rounded-xl transition-colors"
               >
                 <X className="h-6 w-6 text-slate-400 hover:text-slate-600" />
               </button>
@@ -1066,23 +1137,23 @@ const Index = () => {
             <div className="p-6 overflow-y-auto">
               
               {/* Description */}
-              <div className="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100">
-                <p className="text-slate-700 leading-relaxed text-sm md:text-base">
+              <div className="mb-6 bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                <p className="text-slate-700 leading-relaxed">
                   {selectedContest.description}
                 </p>
               </div>
 
               {/* Info Stats */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <div className="p-4 rounded-xl border border-slate-100">
-                  <h4 className="text-xs font-bold text-slate-400 uppercase mb-2 flex items-center">
-                    <Users className="h-3 w-3 mr-1.5" /> Đối tượng
+                <div className="p-5 rounded-2xl bg-blue-50 border border-blue-100">
+                  <h4 className="text-xs font-bold text-blue-600 uppercase mb-2 flex items-center">
+                    <Users className="h-4 w-4 mr-2" /> Đối tượng
                   </h4>
-                  <p className="font-semibold text-slate-800 text-sm">{selectedContest.details.target}</p>
+                  <p className="font-semibold text-slate-800">{selectedContest.details.target}</p>
                 </div>
-                <div className="p-4 rounded-xl border border-slate-100">
-                  <h4 className="text-xs font-bold text-slate-400 uppercase mb-2 flex items-center">
-                    <Award className="h-3 w-3 mr-1.5" /> Hình thức thi
+                <div className="p-5 rounded-2xl bg-purple-50 border border-purple-100">
+                  <h4 className="text-xs font-bold text-purple-600 uppercase mb-2 flex items-center">
+                    <Award className="h-4 w-4 mr-2" /> Hình thức thi
                   </h4>
                   <p className="font-semibold text-slate-800 text-sm">{selectedContest.details.format}</p>
                 </div>
@@ -1090,35 +1161,37 @@ const Index = () => {
 
               {/* Timeline */}
               <div className="mb-8">
-                <h3 className="text-lg font-bold text-slate-800 mb-5 flex items-center">
-                  <Calendar className="h-5 w-5 mr-2 text-blue-600" /> Lịch trình 2025-2026
+                <h3 className="text-lg font-heading font-bold text-slate-800 mb-6 flex items-center">
+                  <Calendar className="h-5 w-5 mr-2 text-primary" /> Lịch trình 2025-2026
                 </h3>
-                <div className="relative border-l-2 border-blue-100 ml-3 space-y-6 pb-2">
+                <div className="relative border-l-2 border-primary/20 ml-4 space-y-6 pb-2">
                   {selectedContest.details.schedule.map((item: any, idx: number) => (
-                    <div key={idx} className="relative pl-8 group">
+                    <div key={idx} className="relative pl-8">
                       {/* Timeline Dot */}
                       <div className={`absolute -left-[9px] top-1 h-4 w-4 rounded-full border-4 border-white shadow-sm transition-all
                         ${item.phase.includes("Quốc gia") || item.phase.includes("Chung kết") || item.phase.includes("Ngày thi")
-                          ? 'bg-yellow-400 ring-2 ring-yellow-100 scale-110' 
-                          : 'bg-blue-300'}`
+                          ? 'bg-primary ring-2 ring-primary/20 scale-110' 
+                          : 'bg-primary/40'}`
                       }></div>
                       
-                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
-                        <span className="text-sm font-bold text-blue-800 bg-blue-50 px-2.5 py-0.5 rounded w-fit mb-1 sm:mb-0">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                        <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-lg w-fit">
                           {item.time}
                         </span>
                       </div>
-                      <p className="font-medium text-slate-700 text-sm">{item.phase}</p>
+                      <p className="font-medium text-slate-700 mt-1">{item.phase}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Highlight Note */}
-              <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 flex items-start gap-3">
-                <AlertCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-start gap-4">
+                <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <AlertCircle className="h-5 w-5 text-amber-600" />
+                </div>
                 <div>
-                  <h4 className="font-bold text-amber-900 text-sm">Lưu ý quan trọng</h4>
+                  <h4 className="font-bold text-amber-900">Lưu ý quan trọng</h4>
                   <p className="text-sm text-amber-800 mt-1 leading-relaxed">
                     {selectedContest.details.highlight}
                   </p>
@@ -1127,36 +1200,35 @@ const Index = () => {
             </div>
 
             {/* Modal Footer */}
-            <div className="p-5 border-t border-slate-100 bg-slate-50 flex flex-wrap justify-end gap-3 rounded-b-2xl">
-              <button 
+            <div className="p-6 border-t border-slate-100 bg-slate-50 flex flex-wrap justify-end gap-3 rounded-b-3xl">
+              <Button 
+                variant="outline"
                 onClick={() => setSelectedContest(null)}
-                className="px-5 py-2.5 rounded-xl text-slate-600 font-medium hover:bg-slate-200 transition-colors text-sm"
+                className="rounded-xl"
               >
                 Đóng lại
-              </button>
+              </Button>
               {selectedContest.rankingUrl && (
                 <a 
                   href={selectedContest.rankingUrl}
                   target="_blank"
-                  rel="noreferrer" 
-                  className="px-5 py-2.5 rounded-xl bg-amber-500 text-white font-medium hover:bg-amber-600 transition-all flex items-center shadow-lg shadow-amber-200 hover:shadow-amber-300 transform hover:-translate-y-0.5 text-sm"
+                  rel="noreferrer"
                 >
-                  <BarChart3 className="h-4 w-4 mr-2" /> Bảng xếp hạng
+                  <Button className="bg-amber-500 hover:bg-amber-600 rounded-xl">
+                    <BarChart3 className="h-4 w-4 mr-2" /> Bảng xếp hạng
+                  </Button>
                 </a>
               )}
-              {selectedContest.details.website !== "#" ? (
+              {selectedContest.details.website !== "#" && (
                 <a 
                   href={selectedContest.details.website}
                   target="_blank"
-                  rel="noreferrer" 
-                  className="px-5 py-2.5 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all flex items-center shadow-lg shadow-blue-200 hover:shadow-blue-300 transform hover:-translate-y-0.5 text-sm"
+                  rel="noreferrer"
                 >
-                  Trang chính thức <ExternalLink className="h-4 w-4 ml-2" />
+                  <Button className="bg-gradient-primary hover:opacity-90 rounded-xl btn-shadow">
+                    <ExternalLink className="h-4 w-4 mr-2" /> Trang chính thức
+                  </Button>
                 </a>
-              ) : (
-                <button disabled className="px-5 py-2.5 rounded-xl bg-slate-300 text-white font-medium cursor-not-allowed text-sm">
-                  Đang cập nhật link
-                </button>
               )}
             </div>
           </div>
@@ -1164,24 +1236,31 @@ const Index = () => {
       )}
 
       {/* --- FOOTER --- */}
-      <footer className="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 mt-auto">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="p-3 bg-slate-800 rounded-full border border-slate-700">
-              <Trophy className="h-8 w-8 text-yellow-400" />
+      <footer className="bg-slate-900 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-lg">Thi Đua Tiểu Học</h3>
+                <p className="text-slate-400 text-sm">Cổng thông tin 2025-2026</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              <Link to="/tai-lieu" className="text-slate-400 hover:text-white transition-colors">
+                Tài liệu
+              </Link>
+              <a href="mailto:contact@example.com" className="text-slate-400 hover:text-white transition-colors">
+                Liên hệ
+              </a>
             </div>
           </div>
-          <h2 className="text-white font-bold text-lg mb-2 tracking-wide uppercase">Cổng Tra Cứu Thi Đua Tiểu Học</h2>
-          <p className="text-sm mb-6 text-slate-500 max-w-md mx-auto">
-            Hệ thống tổng hợp thông tin các kỳ thi uy tín cấp Quốc gia dành cho học sinh Tiểu học, niên khóa 2025-2026.
-          </p>
-          <div className="border-t border-slate-800 pt-6">
-            <p className="text-xs text-slate-600 leading-relaxed">
-              * Khuyến cáo: Thông tin trên website được tổng hợp từ các nguồn công khai. Phụ huynh vui lòng kiểm tra lại trên website chính thức của từng cuộc thi.
+          <div className="mt-8 pt-8 border-t border-slate-800 text-center">
+            <p className="text-slate-500 text-sm">
+              © 2025 Thi Đua Tiểu Học. Tổng hợp thông tin vì cộng đồng.
             </p>
-            <div className="mt-4 text-xs font-mono text-slate-700">
-              © 2025 EduContest Vietnam
-            </div>
           </div>
         </div>
       </footer>
