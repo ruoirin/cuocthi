@@ -13,6 +13,25 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        heading: ['Inter', 'sans-serif'],
+        body: ['Be Vietnam Pro', 'sans-serif'],
+      },
+      fontSize: {
+        'body': ['14px', { lineHeight: '1.6' }],
+        'heading-sm': ['18px', { lineHeight: '1.4' }],
+        'heading-md': ['20px', { lineHeight: '1.3' }],
+        'heading-lg': ['24px', { lineHeight: '1.2' }],
+      },
+      spacing: {
+        'card': '24px',
+      },
+      boxShadow: {
+        'card': 'var(--shadow-card)',
+        'card-hover': 'var(--shadow-card-hover)',
+        'soft': 'var(--shadow-soft)',
+        'glow': 'var(--shadow-glow)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
