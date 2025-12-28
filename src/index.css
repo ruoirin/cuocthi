@@ -2,170 +2,192 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 215 25% 15%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
-
-    --primary: 217 91% 60%;
+    /* Primary - Warm Orange/Red gradient palette (Prodigy-inspired) */
+    --primary: 24 95% 53%;
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 214 32% 91%;
-    --secondary-foreground: 215 25% 15%;
-
-    --muted: 214 32% 91%;
+    
+    /* Secondary - Teal/Cyan accent */
+    --secondary: 173 58% 39%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Backgrounds */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    
+    /* Card styling */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
+    /* Muted backgrounds */
+    --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
-
-    --accent: 45 93% 58%;
-    --accent-foreground: 215 25% 15%;
-
+    
+    /* Accent colors */
+    --accent: 24 95% 95%;
+    --accent-foreground: 24 95% 30%;
+    
+    /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
+    
+    /* Border and input */
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 217 91% 60%;
-
-    --radius: 0.75rem;
-
-    /* Typography */
-    --font-heading: 'Inter', sans-serif;
-    --font-body: 'Be Vietnam Pro', sans-serif;
-
-    /* Shadows */
-    --shadow-card: 0 1px 3px 0 hsl(215 25% 15% / 0.04), 0 1px 2px -1px hsl(215 25% 15% / 0.04);
-    --shadow-card-hover: 0 10px 25px -5px hsl(215 25% 15% / 0.08), 0 8px 10px -6px hsl(215 25% 15% / 0.04);
-    --shadow-soft: 0 4px 6px -1px hsl(215 25% 15% / 0.05), 0 2px 4px -2px hsl(215 25% 15% / 0.05);
-    --shadow-glow: 0 0 20px hsl(217 91% 60% / 0.15);
-
-    /* Glassmorphism */
-    --glass-bg: 0 0% 100% / 0.7;
-    --glass-border: 0 0% 100% / 0.2;
-    --glass-blur: 12px;
-
-    /* Contest category colors */
-    --blue-50: 214 95% 97%;
-    --blue-100: 214 95% 93%;
-    --blue-600: 217 91% 60%;
-    --blue-700: 217 91% 50%;
-    --blue-800: 217 91% 40%;
-    --blue-900: 217 91% 30%;
-
-    --indigo-50: 226 100% 97%;
-    --indigo-100: 226 100% 93%;
-    --indigo-600: 239 84% 67%;
-    --indigo-900: 234 89% 26%;
-
-    --purple-600: 271 91% 65%;
+    --ring: 24 95% 53%;
     
-    --green-50: 138 76% 97%;
-    --green-100: 141 84% 93%;
-    --green-600: 142 76% 36%;
-    --green-700: 142 72% 29%;
-
-    --orange-600: 25 95% 53%;
-
-    --red-50: 0 86% 97%;
-    --red-100: 0 93% 94%;
-    --red-600: 0 84% 60%;
-    --red-700: 0 72% 51%;
-
-    --yellow-300: 45 93% 58%;
-    --yellow-400: 45 93% 47%;
-
-    --pink-600: 330 81% 60%;
-
-    --amber-50: 48 100% 96%;
-    --amber-100: 48 96% 89%;
-    --amber-500: 38 92% 50%;
-    --amber-800: 32 95% 44%;
-    --amber-900: 28 92% 28%;
-
-    --teal-50: 166 76% 97%;
-    --teal-100: 167 85% 89%;
-    --teal-600: 173 80% 40%;
-    --teal-700: 175 84% 32%;
-
-    --cyan-50: 191 90% 96%;
-    --cyan-100: 188 89% 88%;
-    --cyan-600: 188 78% 50%;
-    --cyan-700: 191 85% 42%;
-
-    --slate-50: 210 40% 98%;
-    --slate-100: 214 32% 91%;
-    --slate-200: 213 27% 84%;
-    --slate-300: 212 23% 69%;
-    --slate-400: 215 16% 47%;
-    --slate-500: 215 19% 35%;
-    --slate-600: 215 28% 17%;
-    --slate-700: 215 25% 15%;
-    --slate-800: 217 33% 10%;
-    --slate-900: 222 47% 7%;
+    /* Chart colors */
+    --chart-1: 24 95% 53%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 262 83% 58%;
+    --chart-4: 47 95% 50%;
+    --chart-5: 349 89% 60%;
+    
+    /* Radius */
+    --radius: 0.75rem;
+    
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 24 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 24 95% 53%;
+    
+    /* Custom shadows */
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+    --shadow-card-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 60px -12px hsla(24, 95%, 53%, 0.25);
   }
-}
 
-@layer base {
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 173 58% 39%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 24 95% 53%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+  }
+
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-background text-foreground font-body antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Be Vietnam Pro', sans-serif;
   }
-
+  
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight;
+    font-family: 'Inter', sans-serif;
+    @apply font-bold tracking-tight;
   }
 }
 
 @layer components {
-  /* Card with hover lift effect */
+  /* Prodigy-style Card hover effects */
   .card-hover {
     @apply transition-all duration-300 ease-out;
     box-shadow: var(--shadow-card);
   }
   
   .card-hover:hover {
-    @apply -translate-y-1;
+    @apply -translate-y-2;
     box-shadow: var(--shadow-card-hover);
   }
-
-  /* Glassmorphism card */
+  
+  /* Glassmorphism for featured items */
   .glass-card {
-    background: hsl(var(--glass-bg));
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid hsl(var(--glass-border));
-  }
-
-  /* Featured card with glow */
-  .featured-card {
-    @apply relative overflow-hidden;
+    @apply bg-white/80 backdrop-blur-xl border border-white/20;
     box-shadow: var(--shadow-soft);
   }
-
+  
+  /* Featured card with gradient border */
+  .featured-card {
+    @apply relative overflow-hidden rounded-2xl;
+    background: linear-gradient(135deg, hsl(24 95% 53% / 0.1), hsl(173 58% 39% / 0.1));
+  }
+  
   .featured-card::before {
     content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1));
+    @apply absolute inset-0 rounded-2xl;
+    padding: 2px;
+    background: linear-gradient(135deg, hsl(24 95% 53%), hsl(173 58% 39%));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
-
-  .featured-card:hover::before {
-    @apply opacity-100;
+  
+  /* Primary gradient background */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, hsl(24 95% 53%), hsl(15 90% 45%));
   }
-
-  .featured-card:hover {
-    box-shadow: var(--shadow-glow);
+  
+  /* Secondary gradient background */
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, hsl(173 58% 39%), hsl(180 60% 35%));
+  }
+  
+  /* Hero gradient */
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(350 89% 60%) 50%, hsl(280 80% 55%) 100%);
+  }
+  
+  /* Animated gradient */
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* Quotation mark styling */
+  .quote-mark {
+    @apply text-6xl leading-none font-serif text-primary/30;
+  }
+  
+  /* Badge/pill styling */
+  .badge-glow {
+    @apply relative;
+    box-shadow: 0 0 20px hsla(24, 95%, 53%, 0.4);
+  }
+  
+  /* Button with shadow */
+  .btn-shadow {
+    box-shadow: 0 4px 14px 0 hsla(24, 95%, 53%, 0.39);
+  }
+  
+  .btn-shadow:hover {
+    box-shadow: 0 6px 20px hsla(24, 95%, 53%, 0.45);
+    @apply -translate-y-0.5;
   }
 }
 
