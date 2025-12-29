@@ -1020,7 +1020,11 @@ const Index = () => {
             <div 
               key={contest.id} 
               onClick={() => setSelectedContest(contest)}
-              className="group bg-white rounded-2xl border border-slate-200 card-hover cursor-pointer flex flex-col h-full animate-fade-in"
+              className="group bg-white rounded-2xl border border-slate-200 cursor-pointer flex flex-col h-full animate-fade-in
+                         shadow-card hover:shadow-card-hover 
+                         transform transition-all duration-300 ease-out
+                         hover:-translate-y-2 hover:scale-[1.02]
+                         hover:border-primary/30"
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {/* Card Header */}
